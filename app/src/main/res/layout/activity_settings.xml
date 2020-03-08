@@ -5,47 +5,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/AboutPic"
-        android:layout_width="0dp"
-        android:layout_height="145dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="92dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginRight="100dp"
-        android:contentDescription="@string/Jackdaw_pic"
-        app:layout_constraintEnd_toEndOf="parent"
+    <Switch
+        android:id="@+id/switch2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="24dp"
+        android:text="Theme  "
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/bird" />
+        app:layout_constraintVertical_bias="0.045" />
 
-    <TextView
-        android:id="@+id/About_text"
-        android:layout_width="409dp"
-        android:layout_height="32dp"
-        android:gravity="center"
-        android:text="@string/About"
-        android:textSize="24sp"
-        android:typeface="sans"
-        android:visibility="visible"
-        app:fontFamily="sans-serif-medium"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/AboutPic"
-        app:layout_constraintVertical_bias="0.283" />
-
-    <TextView
-        android:id="@+id/Author"
-        android:layout_width="409dp"
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
         android:layout_marginTop="24dp"
-        android:gravity="center"
-        android:text="@string/Author"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Theme  "
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/About_text" />
-
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.045" />
 </androidx.constraintlayout.widget.ConstraintLayout>

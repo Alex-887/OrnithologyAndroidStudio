@@ -30,4 +30,11 @@ public class SearchNameActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
+
+    public void infoBird(View addBirdView) {
+        Intent intent = new Intent(this, InfoBird.class);
+
+        startActivity(intent);
+
+    }
 }

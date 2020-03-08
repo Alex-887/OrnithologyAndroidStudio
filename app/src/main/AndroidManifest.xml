@@ -2,7 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.ornithology_favre_berthouzoz">
-<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,30 +13,28 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".AboutActivity"
-            android:parentActivityName=".MainActivity"/>
-
+        <activity android:name=".AddFamily"></activity>
+        <activity android:name=".InfoFamily" />
+        <activity android:name=".InfoBird" />
+        <activity
+            android:name=".AboutActivity"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".SearchFamilyActivity"
             android:label="@string/title_activity_search_family"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".SearchNameActivity"
-            android:parentActivityName=".MainActivity"
             android:label="@string/title_activity_search_name"
+            android:parentActivityName=".MainActivity"
             tools:targetApi="jelly_bean" />
-
         <activity
             android:name=".SettingsActivity"
-            android:parentActivityName=".MainActivity"/>
-
-
-        <activity android:name=".AddBird"
-            android:parentActivityName=".SearchNameActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".AddBird"
             android:label="Add a new Bird"
-            />
-
+            android:parentActivityName=".SearchNameActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <resources>
-    <string name="app_name">Ornithology_Favre_Berthouzoz</string>
+    <string name="app_name">Ornithology App</string>
     <string name="title_activity_search_name">SearchNameActivity</string>
     <string name="About">This App has been produced by</string>
     <string name="Author">Berthouzoz Alex and Favre Léonard</string>
     <string name="Jackdaw_pic">This is the pic of a jackdaw</string>
     <string name="add_bird">Add a bird</string>
+    <string name="add_family">Add a family</string>
 
     <string-array name="biotope">
         <item>Cours d\'eau</item>
@@ -119,4 +120,26 @@
     </string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_search_family">SearchFamilyActivity</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="title_activity_inforbird">inforbird</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="title_activity_info_family">InfoFamily</string>
+
+
 </resources>

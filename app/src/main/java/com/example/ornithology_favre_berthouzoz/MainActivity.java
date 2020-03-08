@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void searchName(View searchNameView) {
         Intent intent = new Intent(this, SearchNameActivity.class);
-
         startActivity(intent);
 
     }
@@ -39,16 +38,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void searchIdentification(View searchIdentificationView) {
-        Intent intent = new Intent(this, SearchIdentificationActivity.class);
-
-        startActivity(intent);
-
-    }
 
     public void settings(View settingsView) {
-        Intent intent = new Intent(this, SettingsActivity.class);
-        startActivity(intent);
+    Intent intent = new Intent(this, SettingsActivity.class);
+     startActivity(intent);
 
     }
 
