@@ -8,11 +8,12 @@
 
     <Button
         android:id="@+id/about"
-        android:layout_width="180dp"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="120dp"
         android:layout_marginLeft="120dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="120dp"
         android:layout_marginRight="120dp"
         android:onClick="about"
@@ -24,13 +25,14 @@
 
     <Button
         android:id="@+id/settings"
-        android:layout_width="180dp"
+        android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="120dp"
         android:layout_marginLeft="120dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="120dp"
         android:layout_marginRight="120dp"
+        android:onClick="settings"
         android:text="Settings"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -39,11 +41,11 @@
 
     <Button
         android:id="@+id/identify"
-        android:layout_width="180dp"
+        android:layout_width="0dp"
         android:layout_height="55dp"
         android:layout_marginStart="120dp"
         android:layout_marginLeft="120dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="120dp"
         android:layout_marginRight="120dp"
         android:onClick="searchIdentification"
@@ -55,7 +57,7 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="337dp"
+        android:layout_width="wrap_content"
         android:layout_height="242dp"
         android:layout_marginTop="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -68,7 +70,8 @@
 
     <Button
         android:id="@+id/name"
-        android:layout_width="180dp"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="0dp"
         android:layout_height="51dp"
         android:layout_marginStart="120dp"
         android:layout_marginLeft="120dp"
@@ -84,11 +87,11 @@
 
     <Button
         android:id="@+id/family"
-        android:layout_width="180dp"
+        android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="120dp"
         android:layout_marginLeft="120dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="120dp"
         android:layout_marginRight="120dp"
         android:onClick="searchFamily"
