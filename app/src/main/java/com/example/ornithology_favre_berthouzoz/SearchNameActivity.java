@@ -24,4 +24,10 @@ public class SearchNameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search_name);
 
     }
+    public void addBird(View addBirdView) {
+        Intent intent = new Intent(this, AddBird.class);
+
+        startActivity(intent);
+
+    }
 }

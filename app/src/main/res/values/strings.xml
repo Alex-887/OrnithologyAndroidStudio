@@ -5,6 +5,20 @@
     <string name="Author">Berthouzoz Alex and Favre Léonard</string>
     <string name="Jackdaw_pic">This is the pic of a jackdaw</string>
     <string name="add_bird">Add a bird</string>
+    <string-array name="biotope">
+        <item>Cours d'eau</item>
+        <item>Zones humides</item>
+        <item>prés et champs</item>
+        <item>foêt</item>
+        <item>zone agricole</item>
+        <item>Montagne</item>
+        <item>agglomérations</item>
+        <item>gravières</item>
+        <item>vergers</item>
+        <item>falaises</item>
+        <item>steppes rocailleuses</item>
+        <item>pâturages</item>
+    </string-array>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 

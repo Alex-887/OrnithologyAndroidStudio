@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.ornithology_favre_berthouzoz">
-
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -27,7 +27,13 @@
 
         <activity
             android:name=".SettingsActivity"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"/>
+
+
+        <activity android:name=".AddBird"
+            android:parentActivityName=".SearchNameActivity"
+            android:label="Add a new Bird"
+            />
 
         <activity android:name=".MainActivity">
             <intent-filter>
