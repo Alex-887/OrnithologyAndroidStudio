@@ -1,79 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/coordinatorLayout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:fitsSystemWindows="true"
+    android:orientation="vertical"
     tools:context=".SearchNameActivity">
 
-    <SearchView
-        android:id="@+id/search_by_family"
-        android:layout_width="285dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginLeft="60dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="60dp"
-        android:layout_marginRight="60dp"
-        android:gravity="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/add_family_button"
-        android:layout_width="56dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginLeft="60dp"
-        android:layout_marginTop="53dp"
-        android:onClick="addBird"
-        android:tint="#06A0CF"
-        app:backgroundTint="#323232"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/search_by_family"
-        app:rippleColor="#FFFFFF"
-        app:srcCompat="@android:drawable/ic_input_add" />
-
-    <TextView
-        android:id="@+id/add_bird"
-        android:layout_width="wrap_content"
-        android:layout_height="52dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:gravity="center_vertical"
-        android:text="@string/add_bird"
-        android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/add_family_button"
-        app:layout_constraintTop_toBottomOf="@+id/search_by_family" />
-
-
     <Button
-        android:id="@+id/simpleButton1"
-        android:layout_width="298dp"
-        android:layout_height="43dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="52dp"
-        android:layout_marginLeft="52dp"
-        android:layout_marginTop="65dp"
-        android:layout_marginEnd="58dp"
-        android:layout_marginRight="58dp"
-        android:layout_marginBottom="480dp"
-        android:background="#00f"
-        android:hint="Duck"
-        android:onClick="infoBird"
-        android:padding="5dp"
-        android:textColorHint="#fff"
-        android:textSize="20sp"
-        android:textStyle="bold|italic"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_family_button"
-        app:layout_constraintVertical_bias="0.687" />
+        android:id="@+id/addBtn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginBottom="20dp"
+        android:background="@color/colorButton"
+        android:onClick="addBird"
+        android:text="@string/add_bird"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ListView
+        android:padding="20dp"
+        android:id="@+id/birds_array"
+        android:layout_weight="1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"/>
+
+
+</LinearLayout>
+
+
+
+
+

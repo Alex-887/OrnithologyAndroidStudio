@@ -43,19 +43,19 @@
 
     <Button
         android:id="@+id/button4"
-        android:layout_width="348dp"
-        android:layout_height="60dp"
+        android:layout_width="327dp"
+        android:layout_height="58dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginBottom="96dp"
-        android:background="#F44336"
+        android:layout_marginBottom="92dp"
+        android:background="@color/colorRed"
         android:gravity="center"
         android:text="Delete this family"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

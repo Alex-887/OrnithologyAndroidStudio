@@ -13,16 +13,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".AddFamily"></activity>
-        <activity android:name=".InfoFamily" />
+        <activity
+            android:name=".AddFamily"
+            android:parentActivityName=".SearchFamilyActivity"></activity>
+        <activity
+            android:name=".InfoFamily"
+            android:parentActivityName=".SearchFamilyActivity" />
         <activity android:name=".InfoBird" />
         <activity
             android:name=".AboutActivity"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".SearchFamilyActivity"
-            android:label="@string/title_activity_search_family"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".SearchNameActivity"
             android:label="@string/title_activity_search_name"

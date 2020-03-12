@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Ornithology App</string>
+    <string name="app_name">Ornithologie App</string>
+    <string name="add_bird">Ajouter un oiseau</string>
+    <string name="action_settings">Options</string>
+    <string name="add_family">Ajouter une familly</string>
+    <string name="searchByName">Chercher par nom</string>
 </resources>

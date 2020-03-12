@@ -8,51 +8,53 @@
     tools:context=".AddBird">
 
     <TextView
-        android:id="@+id/addBirdText2"
+        android:id="@+id/addBirdText"
         android:layout_width="wrap_content"
-        android:layout_height="71dp"
-        android:layout_marginStart="26dp"
-        android:layout_marginLeft="26dp"
-        android:layout_marginTop="42dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="104dp"
         android:clickable="false"
         android:gravity="center_vertical"
-        android:text="Sound"
-        android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@+id/soundImage"
-        app:layout_constraintTop_toBottomOf="@+id/addBirdText" />
+        android:text="Picture"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="98dp"
-        android:layout_height="92dp"
-        android:layout_marginStart="62dp"
-        android:layout_marginLeft="62dp"
-        android:layout_marginTop="90dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="116dp"
+        android:layout_marginLeft="116dp"
+        android:layout_marginTop="72dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ombre_oiseau" />
 
     <TextView
-        android:id="@+id/addBirdText"
+        android:id="@+id/addBirdText2"
         android:layout_width="wrap_content"
-        android:layout_height="71dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="97dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="56dp"
         android:clickable="false"
         android:gravity="center_vertical"
-        android:text="Picture"
-        android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="Sound"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/soundImage"
+        app:layout_constraintTop_toBottomOf="@+id/addBirdText" />
 
     <ImageView
         android:id="@+id/soundImage"
-        android:layout_width="78dp"
-        android:layout_height="82dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginLeft="80dp"
-        android:layout_marginTop="28dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="116dp"
+        android:layout_marginLeft="116dp"
+        android:layout_marginTop="24dp"
         android:background="#00D60000"
         android:foreground="@drawable/sound"
         app:layout_constraintStart_toStartOf="parent"
@@ -60,73 +62,78 @@
         app:srcCompat="@android:drawable/ic_lock_silent_mode_off" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/txt_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="69dp"
-        android:layout_marginLeft="69dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginLeft="96dp"
         android:layout_marginTop="32dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:hint="Name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/soundImage" />
 
     <EditText
-        android:id="@+id/Family_text"
+        android:id="@+id/txt_family"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="69dp"
-        android:layout_marginLeft="69dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginLeft="96dp"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Family"
+        android:hint="Family"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_name" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="69dp"
-        android:layout_marginLeft="69dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="84dp"
+        android:layout_marginLeft="84dp"
+        android:layout_marginTop="16dp"
         android:text="Zone"
-        android:textSize="24sp"
+        android:textColor="#000000"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Family_text" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_family" />
 
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="197dp"
         android:layout_height="31dp"
-        android:layout_marginStart="6dp"
-        android:layout_marginLeft="6dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
         android:entries="@array/biotope"
         app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/Family_text" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_family" />
 
     <Spinner
         android:id="@+id/spinner2"
         android:layout_width="232dp"
         android:layout_height="34dp"
-        android:layout_marginStart="69dp"
-        android:layout_marginLeft="69dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginLeft="96dp"
         android:layout_marginTop="20dp"
         android:entries="@array/taille"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/buttonSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Confirm"
+        android:layout_marginBottom="164dp"
+        android:background="@color/colorButton"
+        android:clickable="false"
+        android:text="@string/save"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="593dp" />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
