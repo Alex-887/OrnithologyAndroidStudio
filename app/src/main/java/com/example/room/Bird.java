@@ -1,8 +1,5 @@
 package com.example.room;
-
-
 import androidx.annotation.NonNull;
-import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -10,44 +7,34 @@ import androidx.room.PrimaryKey;
 public class Bird {
 
 
-    private static Bird addBird(final Database db, Bird bird) {
-        db.dao().addBird(bird);
-        return bird;
-    }
-
-
-    private static void populateWithTestDad(Database db){
-        Bird bird = new Bird();
-        bird.setName("Coucou");
-        bird.setFamily("Coucou Vert");
-        addBird(db,bird);
-    }
-
-
-
     @PrimaryKey(autoGenerate = true)
-    private int id;
+    private int idBird;
 
-    @ColumnInfo(name = "name")
     private String name;
 
-    @ColumnInfo(name = "family")
     private String family;
 
 
-
-
-    public Bird(){
+    public Bird(@NonNull String name, @NonNull String family){
         this.name = name;
         this.family = family;
     }
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
+//
+//    private static Bird addBird(final Database db, Bird bird) {
+//        db.dao().insertBird(bird);
+//        return bird;
+//    }
+//
+//
+
+
+    public int getIdBird() {
+        return idBird;
+    }
+    public void setIdBird(int idBird) {
+        this.idBird = idBird;
     }
 
 
@@ -55,14 +42,8 @@ public class Bird {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+
 
     public String getFamily(){return family;}
 
-
-    public void setFamily(String family) {
-        this.family = family;
-    }
 }
