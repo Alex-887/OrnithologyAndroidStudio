@@ -3,33 +3,46 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/coordinatorLayout"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
     tools:context=".SearchNameActivity">
 
     <Button
         android:id="@+id/addBtn"
-        android:layout_width="fill_parent"
+        android:layout_width="284dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="60dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="60dp"
         android:layout_marginBottom="20dp"
         android:background="@color/colorButton"
-        android:onClick="addBird"
         android:text="@string/add_bird"
         android:textAllCaps="false"
         android:textColor="#FFFFFF" />
 
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/bird_item">
+
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+
+
+    <!--
     <ListView
         android:padding="20dp"
-        android:id="@+id/birds_array"
+        android:id="@+id/birds_list_view"
         android:layout_weight="1"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"/>
-
+    -->
 
 </LinearLayout>
 

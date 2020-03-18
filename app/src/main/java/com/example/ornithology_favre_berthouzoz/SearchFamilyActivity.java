@@ -36,17 +36,18 @@ public class SearchFamilyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search_family);
 
 
+
+        //the list with all the family
         family_array = (ListView) findViewById(R.id.family_array);
 
         ArrayList<String> arrayFamily = new ArrayList<>();
+
         arrayFamily.addAll(Arrays.asList(getResources().getStringArray(R.array.family_array)));
 
         adapter = new ArrayAdapter<String>(
                 SearchFamilyActivity.this,
                 android.R.layout.simple_list_item_1,
                 arrayFamily
-
-
         );
         family_array.setAdapter(adapter);
     }

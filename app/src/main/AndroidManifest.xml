@@ -25,9 +25,11 @@
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".SearchFamilyActivity"
+            android:label="@string/title_activity_search_family"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".SearchNameActivity"
+            android:launchMode="singleTop"
             android:label="@string/title_activity_search_name"
             android:parentActivityName=".MainActivity"
             tools:targetApi="jelly_bean" />
@@ -35,7 +37,7 @@
             android:name=".SettingsActivity"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".AddBird"
+            android:name=".AddEditBirdActivity"
             android:label="Add a new Bird"
             android:parentActivityName=".SearchNameActivity" />
         <activity android:name=".MainActivity">
