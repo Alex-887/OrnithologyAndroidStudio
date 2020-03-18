@@ -13,6 +13,7 @@ import com.example.room.Bird;
 import com.example.room.Database;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.room.Room;
 
 public class AddBird extends AppCompatActivity {
@@ -30,6 +31,12 @@ public class AddBird extends AppCompatActivity {
     {
 
         super.onCreate(savedInstanceState);
+        if (AppCompatDelegate.getDefaultNightMode()== AppCompatDelegate.MODE_NIGHT_YES){
+            setTheme(R.style.DarkTheme);
+        }
+        else {
+            setTheme(R.style.LightTheme);
+        }
         setContentView(R.layout.activity_addbird);
         myDataBase = Room.databaseBuilder(getApplicationContext(),
                 Database.class, "birdsdb").allowMainThreadQueries().build();

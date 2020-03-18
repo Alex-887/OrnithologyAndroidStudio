@@ -1,5 +1,6 @@
 package com.example.ornithology_favre_berthouzoz;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import com.example.room.Bird;
@@ -8,6 +9,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.LayoutInflater;
@@ -43,6 +45,12 @@ public class SearchNameActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (AppCompatDelegate.getDefaultNightMode()== AppCompatDelegate.MODE_NIGHT_YES){
+            setTheme(R.style.DarkTheme);
+        }
+        else {
+            setTheme(R.style.LightTheme);
+        }
         setContentView(R.layout.activity_search_name);
 
 
@@ -63,6 +71,7 @@ public class SearchNameActivity extends AppCompatActivity {
 
         birds_array = (ListView) findViewById(R.id.birds_array);
 
+
         arrayBird.addAll(Arrays.asList(getResources().getStringArray(R.array.birds_array)));
 
 
@@ -70,9 +79,19 @@ public class SearchNameActivity extends AppCompatActivity {
                 SearchNameActivity.this,
                 android.R.layout.simple_list_item_1,
                 arrayBird
-        );
+        ) {
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
 
+                TextView item = (TextView) super.getView(position,convertView,parent);
+
+                item.setTextColor(Color.argb(255,3,169,255));
+
+            return item;
+            }
+        };
         birds_array.setAdapter(adapter);
+
 
     }
 

@@ -1,11 +1,13 @@
 package com.example.ornithology_favre_berthouzoz;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
@@ -15,6 +17,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
@@ -33,6 +36,12 @@ public class SearchFamilyActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (AppCompatDelegate.getDefaultNightMode()== AppCompatDelegate.MODE_NIGHT_YES){
+            setTheme(R.style.DarkTheme);
+        }
+        else {
+            setTheme(R.style.LightTheme);
+        }
         setContentView(R.layout.activity_search_family);
 
 
@@ -44,10 +53,17 @@ public class SearchFamilyActivity extends AppCompatActivity {
         adapter = new ArrayAdapter<String>(
                 SearchFamilyActivity.this,
                 android.R.layout.simple_list_item_1,
-                arrayFamily
+                arrayFamily ) {
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
 
+                TextView item = (TextView) super.getView(position,convertView,parent);
 
-        );
+                item.setTextColor(Color.argb(255,3,169,255));
+
+                return item;
+            }
+        };
         family_array.setAdapter(adapter);
     }
 
