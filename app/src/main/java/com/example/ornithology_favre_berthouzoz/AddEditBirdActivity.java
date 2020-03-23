@@ -23,15 +23,17 @@ public class AddEditBirdActivity extends AppCompatActivity {
     public static final String EXTRA_FAMILY =
             "com.example.ornithology_favre_berthouzoz.EXTRA_FAMILY";
 
+    public static final String EXTRA_DESCRIPTION =
+            "com.example.ornithology_favre_berthouzoz.EXTRA_DESCRIPTION";
+    public static final String EXTRA_BIOLOGY =
+            "com.example.ornithology_favre_berthouzoz.EXTRA_BIOLOGY";
 
 
-//    String[]biotope;
-//    String[]taille;
 
-    private EditText editName, editFamily;
+    private EditText editName, editFamily, editDescription, editBiology;
 
 //    private Spinner spinner1, spinner2;
-    public static Database myDataBase;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -40,28 +42,27 @@ public class AddEditBirdActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addbird);
 
+        //id of the text in the .xml
+        editName =  findViewById(R.id.edit_txt_name);
+        editFamily  =  findViewById(R.id.edit_txt_family);
+        editBiology  =  findViewById(R.id.edit_txt_biology);
+        editDescription  =  findViewById(R.id.edit_txt_description);
 
-
-
-
-//        myDataBase = Room.databaseBuilder(getApplicationContext(),
-//                Database.class, "birdsdb").allowMainThreadQueries().build();
-
-        editName = (EditText) findViewById(R.id.edit_txt_name);
-        editFamily  = (EditText) findViewById(R.id.edit_txt_family);
-
+        //close icon
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.close);
-
-
 
         //update
 
         Intent intent = getIntent();
+
+        //only triggered if it contains an ID, so it's only happens when we have an update situation
         if(intent.hasExtra(EXTRA_IDBIRD)){
             setTitle("Edit a bird");
 
             editName.setText(intent.getStringExtra(EXTRA_NAME));
             editFamily.setText(intent.getStringExtra(EXTRA_FAMILY));
+            editBiology.setText(intent.getStringExtra(EXTRA_BIOLOGY));
+            editDescription.setText(intent.getStringExtra(EXTRA_DESCRIPTION));
         }
         else{
             setTitle("Add a new bird");
@@ -72,14 +73,13 @@ public class AddEditBirdActivity extends AppCompatActivity {
 
 
 
-
-
-
     private void saveBird(){
         String name = editName.getText().toString();
         String family = editFamily.getText().toString();
+        String description = editDescription.getText().toString();
+        String biology = editBiology.getText().toString();
 
-        //if it's not empty, save
+        //if it's not empty, save, otherwise send a toast message
         if(name.trim().isEmpty() || family.trim().isEmpty()){
             Toast.makeText(this,"Please enter a name and a family", Toast.LENGTH_SHORT).show();
             return;
@@ -89,6 +89,8 @@ public class AddEditBirdActivity extends AppCompatActivity {
         Intent data = new Intent();
         data.putExtra(EXTRA_NAME, name);
         data.putExtra(EXTRA_FAMILY, family);
+        data.putExtra(EXTRA_DESCRIPTION, description);
+        data.putExtra(EXTRA_BIOLOGY, biology);
 
         //update with id
         int id = getIntent().getIntExtra(EXTRA_IDBIRD, -1); //-1 because we will never have an entry which is -1
@@ -122,33 +124,6 @@ public class AddEditBirdActivity extends AppCompatActivity {
 
         }
     }
-
-
-
-
-
-//        BnSave.setOnClickListener(new View.OnClickListener(){
-//
-//
-//            @Override
-//            public void onClick(View v) {
-//                String name = Name.getText().toString();
-//                String family = Family.getText().toString();
-//
-//                Bird bird = new Bird(name, family);
-//                bird.setName(name);
-//               // bird.setFamily(family);
-//
-//                AddBird.myDataBase.dao().insertBird(bird);
-//                Toast.makeText(AddBird.this, "Bird added successfully", Toast.LENGTH_SHORT).show();
-//                Name.setText("");
-//                Family.setText("");
-//
-//            }
-//        });
-
-
-
 
 
 

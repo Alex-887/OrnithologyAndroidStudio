@@ -14,12 +14,19 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
+            android:name=".TabbedInfoBird"
+            android:label="@string/title_activity_tabbed_info_bird"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".AddFamily"
-            android:parentActivityName=".SearchFamilyActivity"></activity>
+            android:parentActivityName=".SearchFamilyActivity" />
         <activity
             android:name=".InfoFamily"
             android:parentActivityName=".SearchFamilyActivity" />
-        <activity android:name=".InfoBird" />
+        <activity
+            android:name=".InfoBird"
+            android:label="@string/info_bird"
+            android:parentActivityName=".SearchNameActivity" />
         <activity
             android:name=".AboutActivity"
             android:parentActivityName=".MainActivity" />
@@ -29,8 +36,8 @@
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".SearchNameActivity"
-            android:launchMode="singleTop"
             android:label="@string/title_activity_search_name"
+            android:launchMode="singleTop"
             android:parentActivityName=".MainActivity"
             tools:targetApi="jelly_bean" />
         <activity
@@ -40,13 +47,14 @@
             android:name=".AddEditBirdActivity"
             android:label="Add a new Bird"
             android:parentActivityName=".SearchNameActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>
