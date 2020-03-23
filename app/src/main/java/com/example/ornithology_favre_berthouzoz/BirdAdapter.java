@@ -3,23 +3,60 @@ package com.example.ornithology_favre_berthouzoz;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
+import com.example.ViewModel.BirdViewModel;
 import com.example.room.Bird;
+import com.example.room.Dao;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class BirdAdapter extends RecyclerView.Adapter<BirdAdapter.BirdHolder> {
+
+public class BirdAdapter extends ListAdapter<Bird, BirdAdapter.BirdHolder>  {
+
+    private Dao dao;
 
 
-    private List<Bird> birds = new ArrayList<>();
+    private BirdViewModel birdViewModel;
+
+//    private List<Bird> birdList = (List<Bird>) birdViewModel.getAllBirds();
+//    private List<Bird> birdListFull;
+
+
+
 
     //for the update
     private OnItemClickListener listener;
+
+    public BirdAdapter() {
+        super(DIFF_CALLBACK);
+
+
+
+    }
+
+    private static final DiffUtil.ItemCallback<Bird> DIFF_CALLBACK = new DiffUtil.ItemCallback<Bird>() {
+        @Override
+        public boolean areItemsTheSame(@NonNull Bird oldItem, @NonNull Bird newItem) {
+            return oldItem.getIdBird() == newItem.getIdBird(); //if the id are the same, we have the same object twice
+        }
+
+        @Override
+        public boolean areContentsTheSame(@NonNull Bird oldItem, @NonNull Bird newItem) {
+            return oldItem.getFamily().equals(newItem.getFamily()) && oldItem.getName()
+                    .equals(newItem.getName()) ;
+        }
+    };
+
+
 
     @NonNull
     @Override
@@ -33,26 +70,19 @@ public class BirdAdapter extends RecyclerView.Adapter<BirdAdapter.BirdHolder> {
     @Override
     public void onBindViewHolder(@NonNull BirdHolder holder, int position) {
 
-        Bird currentBird = birds.get(position);
+        Bird currentBird = getItem(position);
         holder.textViewBird.setText(currentBird.getName());
         holder.textViewFamily.setText(currentBird.getFamily());
 
     }
 
-    @Override
-    public int getItemCount() {
-        return birds.size();
-    }
 
-    public void setBirds(List<Bird> birds) {
-        this.birds = birds;
-        notifyDataSetChanged();
-    }
 
     //get the position of a selected bird
     public Bird getBirdAt(int position) {
-        return birds.get(position);
+        return getItem(position);
     }
+
 
     class BirdHolder extends RecyclerView.ViewHolder {
         private TextView textViewBird;
@@ -64,18 +94,60 @@ public class BirdAdapter extends RecyclerView.Adapter<BirdAdapter.BirdHolder> {
             textViewFamily = itemView.findViewById(R.id.text_view_family);
 
 
-            //update
+            //update -> catch the click // take the listener at the right position
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     int position = getAdapterPosition();
                     if (listener != null && position != RecyclerView.NO_POSITION) {
-                        listener.onItemClick(birds.get(position));
+                        listener.onItemClick(getItem(position));
                     }
                 }
             });
         }
     }
+
+
+//    //search bar
+//    @Override
+//    public Filter getFilter() {
+//
+//        return birdFilter;
+//    }
+
+//    private Filter birdFilter = new Filter(){
+//
+//        @Override
+//        protected FilterResults performFiltering(CharSequence constraint) {
+//            List<Bird> filteredList = new ArrayList<>();
+//
+//            if(constraint ==null || constraint.length()==0){
+//                filteredList.addAll(birdListFull);
+//            } else{
+//                String filterPattern = constraint.toString().toLowerCase().trim();
+//
+//                for(Bird bird : birdListFull){
+//                    if(bird.getName().toLowerCase().contains(filterPattern)){
+//                        filteredList.add(bird);
+//                    }
+//                }
+//            }
+//
+//            FilterResults results = new FilterResults();
+//            results.values = filteredList;
+//
+//            return results;
+//        }
+//
+//        @Override
+//        protected void publishResults(CharSequence constraint, FilterResults results) {
+//
+//            birdList.clear();
+//            birdList.addAll((List)results.values);
+//            notifyDataSetChanged();
+//
+//        }
+//    };
 
 
     //update
@@ -84,10 +156,9 @@ public class BirdAdapter extends RecyclerView.Adapter<BirdAdapter.BirdHolder> {
     }
 
 
+    //catch the click
     public void setOnItemClickListener(OnItemClickListener listener) {
-
         this.listener = listener;
-
     }
 
 

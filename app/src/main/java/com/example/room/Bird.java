@@ -11,23 +11,22 @@ public class Bird {
     private int idBird;
 
     private String name;
-
     private String family;
 
 
-    public Bird(@NonNull String name, @NonNull String family){
+
+    private String description;
+    private String biology;
+
+
+    public Bird(@NonNull String name, @NonNull String family, String description, String biology){
         this.name = name;
         this.family = family;
+        this.description= description;
+        this.biology = biology;
     }
 
 
-//
-//    private static Bird addBird(final Database db, Bird bird) {
-//        db.dao().insertBird(bird);
-//        return bird;
-//    }
-//
-//
 
 
     public int getIdBird() {
@@ -42,8 +41,17 @@ public class Bird {
         return name;
     }
 
-
-
     public String getFamily(){return family;}
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getBiology() {
+        return biology;
+    }
+
+
+
 
 }

@@ -1,11 +1,8 @@
 package com.example.ViewModel;
 import android.app.Application;
-
 import com.example.room.Bird;
 import com.example.room.BirdRepository;
-
 import java.util.List;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
@@ -28,12 +25,12 @@ public class BirdViewModel extends AndroidViewModel {
         birdRepository.insertBird(bird);
     }
 
-    public void update(Bird bird){
+    public void updateBird(Bird bird){
         birdRepository.updateBird(bird);
     }
 
 
-    public void delete(Bird bird){
+    public void deleteBird(Bird bird){
         birdRepository.deleteBird(bird);
     }
 

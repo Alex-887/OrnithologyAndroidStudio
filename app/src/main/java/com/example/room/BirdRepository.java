@@ -18,6 +18,10 @@ public class BirdRepository {
         allBirds = dao.getBirds();
     }
 
+    public BirdRepository() {
+
+    }
+
     public void insertBird(Bird bird){
     new InsertBirdAsyncTask(dao).execute(bird);
     }
@@ -28,7 +32,7 @@ public class BirdRepository {
     }
 
     public void deleteBird(Bird bird){
-        new DeletetBirdAsyncTask(dao).execute(bird);
+        new DeleteBirdAsyncTask(dao).execute(bird);
     }
 
 
@@ -56,11 +60,11 @@ public class BirdRepository {
 
 
 
-    private static class DeletetBirdAsyncTask extends AsyncTask<Bird, Void, Void>{
+    private static class DeleteBirdAsyncTask extends AsyncTask<Bird, Void, Void>{
 
         private Dao dao;
 
-        private DeletetBirdAsyncTask(Dao dao){
+        private DeleteBirdAsyncTask(Dao dao){
             this.dao = dao;
         }
 

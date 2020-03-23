@@ -6,7 +6,8 @@
     android:title="@string/search_family"
     android:icon="@android:drawable/ic_menu_search"
     app:actionViewClass="android.widget.SearchView"
-    app:showAsAction="always"
+    app:showAsAction="ifRoom"
+
     >
 
 

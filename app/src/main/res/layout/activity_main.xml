@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/bgColor"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:orientation="vertical">
 
     <Button
         android:id="@+id/about"
@@ -23,7 +23,7 @@
         android:onClick="about"
         android:text="@string/about"
         android:textAllCaps="false"
-        android:textColor="?attr/textColor"
+        android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.454"
@@ -47,7 +47,7 @@
         android:onClick="searchName"
         android:text="@string/searchByName"
         android:textAllCaps="false"
-        android:textColor="?attr/textColor"
+        android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/family"
         app:layout_constraintEnd_toEndOf="parent"
@@ -70,7 +70,7 @@
         android:onClick="settings"
         android:text="@string/settings"
         android:textAllCaps="false"
-        android:textColor="?attr/textColor"
+        android:textColor="#FFFFFF"
         android:textSize="18sp"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/about"
@@ -94,7 +94,7 @@
         android:onClick="searchFamily"
         android:text="@string/searchByFamily"
         android:textAllCaps="false"
-        android:textColor="?attr/textColor"
+        android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/settings"
         app:layout_constraintEnd_toEndOf="parent"

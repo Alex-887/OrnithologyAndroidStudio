@@ -81,6 +81,20 @@
         android:hint="Family of the bird"
         android:inputType="text" />
 
+    <EditText
+        android:id="@+id/edit_txt_biology"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Biology of the bird"
+        android:inputType="textMultiLine" />
+
+    <EditText
+        android:id="@+id/edit_txt_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Description of the bird"
+        android:inputType="textMultiLine" />
+
 
 
     <!--
