@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/zone_spinner"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/bgColor"
-    tools:context=".AddBird">
+    tools:context=".AddBird"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".AddEditBirdActivity">
+
+
+    <!--
 
     <TextView
         android:id="@+id/addBirdText"
@@ -60,12 +66,14 @@
         android:background="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:srcCompat="@android:drawable/ic_lock_silent_mode_off" />
+        app:srcCompat="@android:drawable/ic_lock_silent_mode_off" /> -->
 
     <EditText
-        android:id="@+id/txt_name"
-        android:layout_width="wrap_content"
+        android:id="@+id/edit_txt_name"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="Name of the bird"
+        android:inputType="text"
         android:layout_marginStart="96dp"
         android:layout_marginLeft="96dp"
         android:layout_marginTop="32dp"
@@ -78,9 +86,11 @@
         app:layout_constraintTop_toBottomOf="@+id/soundImage" />
 
     <EditText
-        android:id="@+id/txt_family"
-        android:layout_width="wrap_content"
+        android:id="@+id/edit_txt_family"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="Family of the bird"
+        android:inputType="text"
         android:layout_marginStart="96dp"
         android:layout_marginLeft="96dp"
         android:layout_marginTop="16dp"
@@ -92,45 +102,47 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_name" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="84dp"
-        android:layout_marginLeft="84dp"
-        android:layout_marginTop="16dp"
-        android:text="Zone"
-        android:textColor="?attr/textColor"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_family" />
 
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="197dp"
-        android:layout_height="31dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:entries="@array/biotope"
-        android:background="#FFFFFF"
-        android:textColor="?attr/textColor"
-        android:outlineSpotShadowColor="?attr/metaTextColor"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/txt_family" />
+     <TextView
+         android:id="@+id/textView2"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginStart="84dp"
+         android:layout_marginLeft="84dp"
+         android:layout_marginTop="16dp"
+         android:text="Zone"
+         android:textColor="?attr/textColor"
+         android:textSize="18sp"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toBottomOf="@+id/txt_family" />
 
-    <Spinner
-        android:id="@+id/spinner2"
-        android:layout_width="232dp"
-        android:layout_height="34dp"
-        android:layout_marginStart="96dp"
-        android:layout_marginLeft="96dp"
-        android:layout_marginTop="20dp"
-        android:entries="@array/taille"
-        android:background="#FFFFFF"
-        android:textColor="?attr/textColor"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+
+     <Spinner
+         android:id="@+id/spinner"
+         android:layout_width="197dp"
+         android:layout_height="31dp"
+         android:layout_marginStart="16dp"
+         android:layout_marginLeft="16dp"
+         android:layout_marginTop="16dp"
+         android:entries="@array/biotope"
+         app:layout_constraintStart_toEndOf="@+id/textView2"
+         app:layout_constraintTop_toBottomOf="@+id/txt_family"
+         android:background="#FFFFFF"
+         android:textColor="?attr/textColor"
+         android:outlineSpotShadowColor="?attr/metaTextColor"/>
+
+     <Spinner
+         android:id="@+id/spinner2"
+         android:layout_width="232dp"
+         android:layout_height="34dp"
+         android:layout_marginStart="96dp"
+         android:layout_marginLeft="96dp"
+         android:layout_marginTop="20dp"
+         android:entries="@array/taille"android:background="#FFFFFF"
+         android:textColor="?attr/textColor"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <Button
         android:id="@+id/buttonSave"
@@ -146,4 +158,5 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>
