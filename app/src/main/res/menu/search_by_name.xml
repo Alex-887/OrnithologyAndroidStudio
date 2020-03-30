@@ -8,7 +8,7 @@
     android:title="@string/search_name"
     android:icon="@android:drawable/ic_menu_search"
     app:actionViewClass="android.widget.SearchView"
-    app:showAsAction="always"
+    app:showAsAction="ifRoom|collapseActionView"
     >
     </item>
 
@@ -17,7 +17,11 @@
         app:showAsAction="ifRoom"
         android:title="Settings">
 
+
     </item>
+
+
+
 
 
 

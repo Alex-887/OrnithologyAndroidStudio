@@ -23,8 +23,15 @@ public interface Dao {
     @Query("Select * from bird ORDER BY name")
     public LiveData<List<Bird>> getBirds(); //liveData is to update according to the database
 
+
+
     @Delete
     void deleteBird(Bird bird);
+
+//
+//    @Query("Select description where idBird = :id")
+//    public String getDescriptionById(int id);
+
 
 
 //
