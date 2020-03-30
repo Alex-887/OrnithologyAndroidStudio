@@ -20,24 +20,25 @@ import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 
-@androidx.room.Database(entities = {Bird.class},version = 1)
+@androidx.room.Database(entities = {Bird.class, Family.class},version = 14, exportSchema = true)
 public abstract class Database extends RoomDatabase {
-
-
 
 
     private static Context activity;
 
     public static Database instance; //singleton
 
-    public abstract Dao dao();
+    public abstract BirdDao dao();
+
+    public abstract FamilyDao familyDao();
 
     public static synchronized Database getInstance(Context context) { //only on thread at a time
 
         //get the json file
         activity = context.getApplicationContext();
 
-        if (instance ==null){
+        if (instance ==null)
+        {
             instance = Room.databaseBuilder(context.getApplicationContext(),
                     Database.class, "BirdDatabase").fallbackToDestructiveMigration()
                     .addCallback(roomCallback).
@@ -54,52 +55,64 @@ public abstract class Database extends RoomDatabase {
         public void onCreate(@NonNull SupportSQLiteDatabase db){
             super.onCreate(db);
             new PopulateDbAsyncTask(instance).execute();
-        }
+}
 
     };
 
 
     private static class PopulateDbAsyncTask extends AsyncTask<Void,Void,Void>{
 
-        private Dao dao;
+        private BirdDao birdDao;
+        private FamilyDao familyDao;
 
         private PopulateDbAsyncTask(Database db){
-            dao = db.dao();
+            familyDao = db.familyDao();
+            birdDao = db.dao();
 
         }
-
 
         @Override
         protected Void doInBackground(Void... voids) {
 
-
            fillWithSartingData(activity);
-
-
-
             return null;
         }
     }
 
 
     private static void fillWithSartingData(Context context){
-        Dao dao = getInstance(context).dao();
+        BirdDao birdDao = getInstance(context).dao();
+        FamilyDao familyDao = getInstance(context).familyDao();
 
         JSONArray birds = loadJSONArray(context);
+        JSONArray families = loadJSONArray(context);
+
 
         try{
 
-            for(int i = 0; i< birds.length(); i++){
-                JSONObject bird = birds.getJSONObject(i);
+            for(int i = 0; i< families.length(); i++){
+                JSONObject familyObj = families.getJSONObject(i);
+
+                String family = familyObj.getString("FamilieF");
+
+                familyDao.insertFamily(new Family(family));
+
+            }
+
+
+            for(int j = 0; j< birds.length(); j++){
+                JSONObject bird = birds.getJSONObject(j);
 
                 String engName = bird.getString("NameEng");
                 String family = bird.getString("FamilieF");
                 String description = bird.getString("Description");
                 String biology = bird.getString("Biologie");
 
-                dao.insertBird(new Bird(engName, family,description, biology));
+                birdDao.insertBird(new Bird(engName, family, description, biology));
+
 
             }
+
 
         } catch (JSONException e){
 

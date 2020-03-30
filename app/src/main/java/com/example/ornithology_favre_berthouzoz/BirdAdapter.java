@@ -3,16 +3,11 @@ package com.example.ornithology_favre_berthouzoz;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.TextView;
 
 import com.example.ViewModel.BirdViewModel;
 import com.example.room.Bird;
-import com.example.room.Dao;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.example.room.BirdDao;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
@@ -22,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class BirdAdapter extends ListAdapter<Bird, BirdAdapter.BirdHolder>  {
 
-    private Dao dao;
+    private BirdDao birdDao;
 
 
     private BirdViewModel birdViewModel;
@@ -31,22 +26,21 @@ public class BirdAdapter extends ListAdapter<Bird, BirdAdapter.BirdHolder>  {
 //    private List<Bird> birdListFull;
 
 
-
-
     //for the update
     private OnItemClickListener listener;
 
     public BirdAdapter() {
         super(DIFF_CALLBACK);
 
-
-
     }
+
+
+    //check if the items already exists
 
     private static final DiffUtil.ItemCallback<Bird> DIFF_CALLBACK = new DiffUtil.ItemCallback<Bird>() {
         @Override
         public boolean areItemsTheSame(@NonNull Bird oldItem, @NonNull Bird newItem) {
-            return oldItem.getIdBird() == newItem.getIdBird(); //if the id are the same, we have the same object twice
+            return oldItem.getId() == newItem.getId(); //if the id are the same, we have the same object twice
         }
 
         @Override
@@ -70,7 +64,10 @@ public class BirdAdapter extends ListAdapter<Bird, BirdAdapter.BirdHolder>  {
     @Override
     public void onBindViewHolder(@NonNull BirdHolder holder, int position) {
 
+
+        //set the right name and the right family at the bird in a list
         Bird currentBird = getItem(position);
+
         holder.textViewBird.setText(currentBird.getName());
         holder.textViewFamily.setText(currentBird.getFamily());
 

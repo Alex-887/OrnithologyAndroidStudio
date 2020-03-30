@@ -1,20 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+
+
+
+<FrameLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/descriptionFrag"
-
     tools:context=".ui.main.DescriptionFragment">
+
+
 
     <TextView
         android:id="@+id/txt_description"
-        android:layout_width="match_parent"
-        android:layout_height="561dp"
-        android:layout_margin="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="60dp"
+        android:justificationMode="inter_word"
         android:textColor="#000000"
-        android:textSize="12sp" />
+        android:textSize="20sp" />
 
 
-</LinearLayout>
+</FrameLayout>
+
+</ScrollView>

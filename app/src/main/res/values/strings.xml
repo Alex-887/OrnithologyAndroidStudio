@@ -4,7 +4,7 @@
     <string name="title_activity_search_name">Search by name</string>
     <string name="add_bird">Add a bird</string>
     <string name="add_family">Add a family</string>
-    <string name="search_family">Search a bird with his name</string>
+    <string name="search_family">Search by family</string>
     <string name="search_name">Search a family of bird</string>
     <string name="info_bird">Bird info</string>
     <string-array name="birds_array">
@@ -78,6 +78,11 @@
     <string name="title_activity_bird_info">BirdInfo</string>
     <string name="title_activity_tabbed_info_bird">TabbedInfoBird</string>
     <string name="update">update</string>
+    <string name="description">Description :</string>
+    <string name="choose_file">Choose file</string>
+    <string name="family">Family</string>
+    <string name="Delete_all">Delete all</string>
+    <string name="settingsTitle">Settings</string>
 
 
 </resources>

@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    android:background="?attr/bgColor"
     tools:context=".SearchNameActivity">
 
     <Button
@@ -41,14 +40,9 @@
         android:padding="20dp"
         android:id="@+id/birds_list_view"
         android:layout_weight="1"
-        android:id="@+id/birds_array"
-        style="@style/Widget.AppCompat.ListView.DropDown"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="1"
-        android:cacheColorHint="#03A9F4"
-        android:padding="20dp" />
--->
+        android:layout_height="fill_parent"/>
+    -->
 
 </LinearLayout>
 
