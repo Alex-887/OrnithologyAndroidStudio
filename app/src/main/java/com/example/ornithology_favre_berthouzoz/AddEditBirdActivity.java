@@ -46,8 +46,8 @@ public class AddEditBirdActivity extends AppCompatActivity {
             "com.example.ornithology_favre_berthouzoz.EXTRA_BIOLOGY";
 
 
+    //firebase upload image
     public static final int PICK_IMAGE_REQUEST = 1;
-
 
     private Button mButtonChooseImage;
     private Button mButtonUpload;
@@ -89,6 +89,17 @@ public class AddEditBirdActivity extends AppCompatActivity {
 
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
 
+
+
+        //id of the text in the .xml
+        editName =  findViewById(R.id.edit_txt_name);
+        editFamily  =  findViewById(R.id.edit_txt_family);
+        editBiology  =  findViewById(R.id.edit_txt_biology);
+        editDescription  =  findViewById(R.id.edit_txt_description);
+
+
+
+
         mButtonChooseImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,10 +111,12 @@ public class AddEditBirdActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-
+                if (mUploadTask != null && mUploadTask.isInProgress()) {
+                    Toast.makeText(AddEditBirdActivity.this, "Upload in progress", Toast.LENGTH_SHORT).show();
+                } else {
+                    uploadFile();
+                }
             }
-
-
         });
 
         mTextViewShowUploads.setOnClickListener(new View.OnClickListener() {
@@ -116,23 +129,18 @@ public class AddEditBirdActivity extends AppCompatActivity {
 
 
 
-        //id of the text in the .xml
-        editName =  findViewById(R.id.edit_txt_name);
-        editFamily  =  findViewById(R.id.edit_txt_family);
-        editBiology  =  findViewById(R.id.edit_txt_biology);
-        editDescription  =  findViewById(R.id.edit_txt_description);
-
 
 
         //close icon
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.close);
 
-        //update
+
 
         Intent intent = getIntent();
 
         //only triggered if it contains an ID, so it's only happens when we have an update situation
         if(intent.hasExtra(EXTRA_IDBIRD)){
+            // UPDATE
             setTitle("Edit a bird");
 
             editName.setText(intent.getStringExtra(EXTRA_NAME));
@@ -157,6 +165,7 @@ public class AddEditBirdActivity extends AppCompatActivity {
     }
 
 
+    //load the image into the layout
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -173,6 +182,8 @@ public class AddEditBirdActivity extends AppCompatActivity {
     }
 
 
+
+        //method to save the bird
     private void saveBird(){
         String name = editName.getText().toString();
         String family = editFamily.getText().toString();
@@ -184,6 +195,7 @@ public class AddEditBirdActivity extends AppCompatActivity {
             Toast.makeText(this,"Please enter a name and a family", Toast.LENGTH_SHORT).show();
             return;
         }
+
 
 
         Intent data = new Intent();
@@ -216,6 +228,7 @@ public class AddEditBirdActivity extends AppCompatActivity {
     }
 
 
+    //icon to save bird
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
         switch(item.getItemId()){
@@ -228,6 +241,8 @@ public class AddEditBirdActivity extends AppCompatActivity {
         }
     }
 
+
+    //get the file extension of the file
     private String getFileExtension(Uri uri) {
         ContentResolver cR = getContentResolver();
         MimeTypeMap mime = MimeTypeMap.getSingleton();
@@ -235,13 +250,24 @@ public class AddEditBirdActivity extends AppCompatActivity {
     }
 
 
+
+
     private void uploadFile() {
         if (mImageUri != null) {
+
+
+
+
             StorageReference fileReference = mStorageRef.child(System.currentTimeMillis()
                     + "." + getFileExtension(mImageUri));
 
+
             mUploadTask = fileReference.putFile(mImageUri)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+
+
+
+
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             Handler handler = new Handler();
@@ -252,14 +278,26 @@ public class AddEditBirdActivity extends AppCompatActivity {
                                 }
                             }, 500);
 
+
                             Toast.makeText(AddEditBirdActivity.this, "Upload successful", Toast.LENGTH_LONG).show();
+
+
                             Upload upload = new Upload(mEditTextFileName.getText().toString().trim(),
-                                    taskSnapshot.getMetadata().toString());
+                                    taskSnapshot.getStorage().getDownloadUrl().toString());
+
+
+
                             String uploadId = mDatabaseRef.push().getKey();
                             mDatabaseRef.child(uploadId).setValue(upload);
+
+
+
+
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
+
+
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             Toast.makeText(AddEditBirdActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -276,6 +314,9 @@ public class AddEditBirdActivity extends AppCompatActivity {
             Toast.makeText(this, "No file selected", Toast.LENGTH_SHORT).show();
         }
     }
+
+
+
 
 
 }
