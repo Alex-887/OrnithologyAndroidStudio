@@ -37,10 +37,6 @@ public interface BirdDao {
     public LiveData<List<Bird>> getBirdsFromFamily(String family);
 
 
-//    @Query("Select * from bird INNER JOIN family ON family.id = bird.familyId ORDER BY name")
-//    public LiveData<List<Bird>> getBirds(); //liveData is to update according to the database
-
-
     @Delete
     void deleteBird(Bird bird);
 

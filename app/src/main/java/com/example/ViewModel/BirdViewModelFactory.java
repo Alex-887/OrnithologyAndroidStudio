@@ -23,8 +23,6 @@ public class BirdViewModelFactory implements ViewModelProvider.Factory {
 
 
 
-
-
     public BirdViewModelFactory(@NonNull Application application, String family) {
         mApplication = application;
         mfamily = family;

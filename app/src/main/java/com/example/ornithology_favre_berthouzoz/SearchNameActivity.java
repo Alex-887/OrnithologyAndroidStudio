@@ -48,16 +48,6 @@ public class SearchNameActivity extends AppCompatActivity{
 
 
 
-//        // 2 - Configuring ViewModel
-//        private void configureViewModel(){
-//            BirdViewModelFactory mViewModelFactory = Injection.provideViewModelFactory(this);
-//            birdViewModel = new ViewModelProvider(this, mViewModelFactory).get(BirdViewModel.class);
-//            birdViewModel.init(family);
-//        }
-
-
-
-
 
         //add button
         Button addBtn = findViewById(R.id.addBtn);
@@ -82,8 +72,6 @@ public class SearchNameActivity extends AppCompatActivity{
 
 
 
-        //birdViewModel = new ViewModelProvider(this, new BirdViewModelFactory(this.getApplication(), null)).get(BirdViewModel.class);
-
 
         Intent intent = getIntent();
 
@@ -91,14 +79,13 @@ public class SearchNameActivity extends AppCompatActivity{
         //if there is something inside EXTRA_FAMILY, it means it comes from the activity of searching a family
         if(intent.getStringExtra(AddEditFamilyActivity.EXTRA_FAMILY) != null){
 
-            String family = intent.getStringExtra(AddEditFamilyActivity.EXTRA_FAMILY);
+            String currentFamily = intent.getStringExtra(AddEditFamilyActivity.EXTRA_FAMILY);
 
-          BirdViewModelFactory factory = new BirdViewModelFactory(this.getApplication(), family);
+          BirdViewModelFactory factory = new BirdViewModelFactory(this.getApplication(), currentFamily);
 
            birdViewModel = new ViewModelProvider(this, factory).get(BirdViewModel.class);
 
-            //birdViewModel = new ViewModelProvider(this).get(BirdViewModel.class);
-            birdViewModel.getAllBirdsFromFamily(family).observe(this, new Observer<List<Bird>>() {
+            birdViewModel.getAllBirdsFromFamily(currentFamily).observe(this, new Observer<List<Bird>>() {
 
                 List<Bird> birdsList = adapter.getCurrentList();
 
@@ -114,13 +101,11 @@ public class SearchNameActivity extends AppCompatActivity{
 
 
         }
+
+        //if the user click directly on the button search by name -> means he didn't come from another activity
         else{
 
-
-       // BirdViewModel myViewModel = new ViewModelProvider(this, new BirdViewModelFactory(this.getApplication(), family)).get(BirdViewModel.class);
-
-       // birdViewModel = new ViewModelProvider(this).get(BirdViewModel.class);
-
+            //family is null cause it is not used, getAllBirds() requires no arguments
          BirdViewModelFactory factory = new BirdViewModelFactory(this.getApplication(), "");
 
          birdViewModel = new ViewModelProvider(this, factory).get(BirdViewModel.class);
@@ -139,8 +124,7 @@ public class SearchNameActivity extends AppCompatActivity{
 
 
 
-
-        //to delete with swipe
+        //to delete and update with swipe
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
                 ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) { //we can swipe to right and left to delete
 
@@ -181,8 +165,6 @@ public class SearchNameActivity extends AppCompatActivity{
 
                         break;
                 }
-
-
             }
 
         }).attachToRecyclerView(recyclerView); //attach to our list of birds
@@ -208,8 +190,6 @@ public class SearchNameActivity extends AppCompatActivity{
 
             }
         });
-
-
     }
 
 
@@ -227,16 +207,11 @@ public class SearchNameActivity extends AppCompatActivity{
             String biology = data.getStringExtra(AddEditBirdActivity.EXTRA_BIOLOGY);
             String description = data.getStringExtra(AddEditBirdActivity.EXTRA_DESCRIPTION);
 
-
-
             Family familyObj = new Family(family);
             familyViewModel.insertFamily(familyObj);
 
-
-
             Bird bird = new Bird(name, family, description, biology);
             birdViewModel.insertBird(bird);
-
 
 
             Toast.makeText(this, "Bird saved", Toast.LENGTH_SHORT).show();
@@ -286,33 +261,11 @@ public class SearchNameActivity extends AppCompatActivity{
 
 
 
-
     //toolbar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.search_by_name, menu);
-
-
-
-//        final MenuItem item = menu.findItem(R.id.recycler_view);
-//        final SearchView searchView = (SearchView)item.getActionView();
-//
-//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//            @Override
-//            public boolean onQueryTextSubmit(String query) {
-//
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String newText) {
-//                adapter.getFilter().filter(newText);
-//                return false;
-//            }
-//        });
-
-
 
 
         return true;

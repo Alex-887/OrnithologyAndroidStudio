@@ -20,7 +20,6 @@ public class Family {
         this.family = family;
     }
 
-
     public String getFamily() {
         return family;
     }

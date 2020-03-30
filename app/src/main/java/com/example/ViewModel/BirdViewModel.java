@@ -42,12 +42,8 @@ public class BirdViewModel extends AndroidViewModel {
 
         allBirdsFromFamily = repository.getAllBirdsFromFamily(family);
 
-
-
     }
 
-
-   // working
 
     public void insertBird(Bird bird){
         repository.insertBird(bird);
@@ -57,11 +53,9 @@ public class BirdViewModel extends AndroidViewModel {
         repository.updateBird(bird);
     }
 
-
     public void deleteAllBirds() {
         repository.deleteAllBird();
     }
-
 
     public void deleteBird(Bird bird){
         repository.deleteBird(bird);
@@ -70,9 +64,6 @@ public class BirdViewModel extends AndroidViewModel {
     public LiveData<List<Bird>> getAllBirds() { return repository.getAllBirds(); }
 
     public LiveData<List<Bird>> getAllBirdsFromFamily(String family) { return repository.getAllBirdsFromFamily(family); }
-
-
-
 
 
 

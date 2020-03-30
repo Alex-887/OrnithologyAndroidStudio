@@ -97,7 +97,6 @@ public abstract class Database extends RoomDatabase {
 
                 familyDao.insertFamily(new Family(family));
 
-                //String family = familyDao.insertFamily(new Family(family));
             }
 
 
@@ -110,6 +109,7 @@ public abstract class Database extends RoomDatabase {
                 String biology = bird.getString("Biologie");
 
                 birdDao.insertBird(new Bird(engName, family, description, biology));
+
 
             }
 

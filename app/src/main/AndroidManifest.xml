@@ -26,6 +26,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".AddEditFamilyActivity"
+            android:label="@string/title_activity_search_name"
             android:parentActivityName=".SearchFamilyActivity" />
         <activity
             android:name=".InfoFamily"
@@ -35,7 +36,7 @@
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".SearchFamilyActivity"
-            android:label="@string/title_activity_search_family"
+            android:label="@string/search_family"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".SearchNameActivity"
@@ -45,10 +46,11 @@
             tools:targetApi="jelly_bean" />
         <activity
             android:name=".SettingsActivity"
+            android:label="@string/settingsTitle"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".AddEditBirdActivity"
-            android:label="Add a new Bird"
+            android:label="@string/add_bird"
             android:parentActivityName=".SearchNameActivity" />
         <activity android:name=".SplashScreenActivity">
             <intent-filter>

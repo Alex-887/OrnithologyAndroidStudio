@@ -73,16 +73,6 @@ public class SearchFamilyActivity extends AppCompatActivity {
 
         });
 
-//        birdViewModel = new ViewModelProvider(this).get(BirdViewModel.class);
-//        birdViewModel.getAllBirds().observe(this, new Observer<List<Bird>>() {
-//            @Override
-//            public void onChanged(@Nullable List<Bird> birds) { //everytime something changes, the adaptater is updated
-//                //update the recycler view
-//                adapterBird.submitList(birds);
-//            }
-//
-//        });
-
 
 
         //to delete with swipe
@@ -187,10 +177,7 @@ public class SearchFamilyActivity extends AppCompatActivity {
 
             Family familyObj = new Family(fam);
 
-
             familyViewModel.updateFamily(familyObj);
-
-
 
 
             Toast.makeText(this, "Family updated", Toast.LENGTH_SHORT).show();
