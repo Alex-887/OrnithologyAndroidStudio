@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "128468669730",
+    "firebase_url": "https://ornithology-favre-berthouzoz.firebaseio.com",
+    "project_id": "ornithology-favre-berthouzoz",
+    "storage_bucket": "ornithology-favre-berthouzoz.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:128468669730:android:91f1fc8c8584933449817b",
+        "android_client_info": {
+          "package_name": "com.example.ornithology_favre_berthouzoz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "128468669730-s9v77210d17tuefbesnabl7371q51rvj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBM-XtDU0F1Hq1RrZgDrwblZtDWnFdYtkU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "128468669730-s9v77210d17tuefbesnabl7371q51rvj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

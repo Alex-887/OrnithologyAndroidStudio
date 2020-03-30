@@ -1,9 +1,7 @@
 package com.example.ornithology_favre_berthouzoz.ui.main;
 
-import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -11,9 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.ornithology_favre_berthouzoz.AddEditBirdActivity;
 import com.example.ornithology_favre_berthouzoz.R;
-import com.example.ornithology_favre_berthouzoz.TabbedInfoBird;
 
 public class DescriptionFragment extends Fragment {
 
@@ -47,7 +43,6 @@ public class DescriptionFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
     }
 
 
@@ -68,9 +63,9 @@ public class DescriptionFragment extends Fragment {
         }
 
 
-        String descriptionValue = getArguments().getString("Description");
+        String doubleSpace = "\n" + "\n";
 
-         descriptionDisplay.setText("Description : " + descriptionValue + " Biology : " + biology);
+         descriptionDisplay.setText("Description : " +doubleSpace + description + doubleSpace + "Bio : " + "\n" + "\n" + biology);
 
 
 

@@ -1,5 +1,4 @@
 package com.example.ornithology_favre_berthouzoz;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -10,9 +9,11 @@ import android.widget.Button;
 import android.widget.SearchView;
 import android.widget.Toast;
 import com.example.ViewModel.BirdViewModel;
+import com.example.ViewModel.BirdViewModelFactory;
+import com.example.ViewModel.FamilyViewModel;
 import com.example.room.Bird;
-import com.example.room.Dao;
-
+import com.example.room.BirdDao;
+import com.example.room.Family;
 import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -29,23 +30,34 @@ public class SearchNameActivity extends AppCompatActivity{
     public static final int EDIT_BIRD_REQUEST = 2;
 
 
-
-
-
-
+    BirdDao birdDao;
     private BirdViewModel birdViewModel;
-
-
+    private FamilyViewModel familyViewModel;
     private SearchView searchView;
+    private String family;
 
 
 
-
+    private BirdViewModel birdFacto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_name);
+
+
+
+
+//        // 2 - Configuring ViewModel
+//        private void configureViewModel(){
+//            BirdViewModelFactory mViewModelFactory = Injection.provideViewModelFactory(this);
+//            birdViewModel = new ViewModelProvider(this, mViewModelFactory).get(BirdViewModel.class);
+//            birdViewModel.init(family);
+//        }
+
+
+
+
 
         //add button
         Button addBtn = findViewById(R.id.addBtn);
@@ -58,6 +70,7 @@ public class SearchNameActivity extends AppCompatActivity{
             }
         });
 
+
         final RecyclerView recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
@@ -65,16 +78,65 @@ public class SearchNameActivity extends AppCompatActivity{
         final BirdAdapter adapter = new BirdAdapter();
         recyclerView.setAdapter(adapter);
 
-        birdViewModel = new ViewModelProvider(this).get(BirdViewModel.class);
-        birdViewModel.getAllBirds().observe(this, new Observer<List<Bird>>() {
+        familyViewModel = new ViewModelProvider(this).get(FamilyViewModel.class);
+
+
+
+        //birdViewModel = new ViewModelProvider(this, new BirdViewModelFactory(this.getApplication(), null)).get(BirdViewModel.class);
+
+
+        Intent intent = getIntent();
+
+
+        //if there is something inside EXTRA_FAMILY, it means it comes from the activity of searching a family
+        if(intent.getStringExtra(AddEditFamilyActivity.EXTRA_FAMILY) != null){
+
+            String family = intent.getStringExtra(AddEditFamilyActivity.EXTRA_FAMILY);
+
+          BirdViewModelFactory factory = new BirdViewModelFactory(this.getApplication(), family);
+
+           birdViewModel = new ViewModelProvider(this, factory).get(BirdViewModel.class);
+
+            //birdViewModel = new ViewModelProvider(this).get(BirdViewModel.class);
+            birdViewModel.getAllBirdsFromFamily(family).observe(this, new Observer<List<Bird>>() {
+
+                List<Bird> birdsList = adapter.getCurrentList();
+
+                @Override
+                public void onChanged(@Nullable List<Bird> birds) {
+
+                    adapter.submitList(birds);
+
+                }
+
+            });
+
+
+
+        }
+        else{
+
+
+       // BirdViewModel myViewModel = new ViewModelProvider(this, new BirdViewModelFactory(this.getApplication(), family)).get(BirdViewModel.class);
+
+       // birdViewModel = new ViewModelProvider(this).get(BirdViewModel.class);
+
+         BirdViewModelFactory factory = new BirdViewModelFactory(this.getApplication(), "");
+
+         birdViewModel = new ViewModelProvider(this, factory).get(BirdViewModel.class);
+
+            birdViewModel.getAllBirds().observe(this, new Observer<List<Bird>>() {
 
             @Override
-            public void onChanged(@Nullable List<Bird> birds) { //everytime something changes, the adaptater is updated
+            public void onChanged(@Nullable List<Bird> birds) { //everytime something changes, the adapter is updated
                 //update the recycler view
                 adapter.submitList(birds);
             }
 
         });
+
+       }
+
 
 
 
@@ -98,11 +160,12 @@ public class SearchNameActivity extends AppCompatActivity{
                     case ItemTouchHelper.LEFT:
 
                         Intent intent = new Intent(SearchNameActivity.this, AddEditBirdActivity.class);
-                        intent.putExtra(AddEditBirdActivity.EXTRA_IDBIRD, adapter.getBirdAt(viewHolder.getAdapterPosition()).getIdBird());
+                        intent.putExtra(AddEditBirdActivity.EXTRA_IDBIRD, adapter.getBirdAt(viewHolder.getAdapterPosition()).getId());
                         intent.putExtra(AddEditBirdActivity.EXTRA_NAME, adapter.getBirdAt(viewHolder.getAdapterPosition()).getName());
                         intent.putExtra(AddEditBirdActivity.EXTRA_FAMILY, adapter.getBirdAt(viewHolder.getAdapterPosition()).getFamily());
                         intent.putExtra(AddEditBirdActivity.EXTRA_DESCRIPTION, adapter.getBirdAt(viewHolder.getAdapterPosition()).getDescription());
                         intent.putExtra(AddEditBirdActivity.EXTRA_BIOLOGY, adapter.getBirdAt(viewHolder.getAdapterPosition()).getBiology());
+
                         startActivityForResult(intent, EDIT_BIRD_REQUEST);
 
                         adapter.notifyDataSetChanged();
@@ -131,10 +194,10 @@ public class SearchNameActivity extends AppCompatActivity{
             public void onItemClick(Bird bird) {
 
 
-                Intent intent = new Intent(SearchNameActivity.this, TabbedInfoBird.class);
+                Intent intent = new Intent(SearchNameActivity.this, InfoBirdActivity.class);
 
                 //send the datas to the bird info tabbed activity
-                intent.putExtra(AddEditBirdActivity.EXTRA_IDBIRD, bird.getIdBird());
+                intent.putExtra(AddEditBirdActivity.EXTRA_IDBIRD, bird.getId());
                 intent.putExtra(AddEditBirdActivity.EXTRA_NAME, bird.getName());
                 intent.putExtra(AddEditBirdActivity.EXTRA_FAMILY, bird.getFamily());
                 intent.putExtra(AddEditBirdActivity.EXTRA_DESCRIPTION, bird.getDescription());
@@ -154,6 +217,8 @@ public class SearchNameActivity extends AppCompatActivity{
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        //int familyId = data.getIntExtra(AddEditBirdActivity.EXTRA_FAMILYID, -1);
+
 
         //adding a new bird
         if (requestCode == ADD_BIRD_REQUEST && resultCode == RESULT_OK) {
@@ -162,20 +227,31 @@ public class SearchNameActivity extends AppCompatActivity{
             String biology = data.getStringExtra(AddEditBirdActivity.EXTRA_BIOLOGY);
             String description = data.getStringExtra(AddEditBirdActivity.EXTRA_DESCRIPTION);
 
+
+
+            Family familyObj = new Family(family);
+            familyViewModel.insertFamily(familyObj);
+
+
+
             Bird bird = new Bird(name, family, description, biology);
             birdViewModel.insertBird(bird);
+
+
 
             Toast.makeText(this, "Bird saved", Toast.LENGTH_SHORT).show();
 
         } else if (requestCode == EDIT_BIRD_REQUEST && resultCode == RESULT_OK) {
 
+
+             //familyId = data.getIntExtra(AddEditBirdActivity.EXTRA_FAMILYID, -1);
             int id = data.getIntExtra(AddEditBirdActivity.EXTRA_IDBIRD, -1);
 
             if (id == -1) {
 
-
                 Toast.makeText(this, "Bird can't be updated", Toast.LENGTH_SHORT).show();
                 return;
+
             }
 
 
@@ -185,9 +261,15 @@ public class SearchNameActivity extends AppCompatActivity{
             String biology = data.getStringExtra(AddEditBirdActivity.EXTRA_BIOLOGY);
             String description = data.getStringExtra(AddEditBirdActivity.EXTRA_DESCRIPTION);
 
-            //create a bird with new values
+
+            //create a family if it's not already there
+            Family familyObject = new Family(family);
+            familyViewModel.updateFamily(familyObject);
+
+            //create a bird with new value
             Bird bird = new Bird(name, family, description, biology);
-            bird.setIdBird(id);
+            bird.setId(id);
+
 
             birdViewModel.updateBird(bird);
 
@@ -196,6 +278,7 @@ public class SearchNameActivity extends AppCompatActivity{
         } else {
 
             Toast.makeText(this, "Bird not saved", Toast.LENGTH_SHORT).show();
+
         }
 
     }
@@ -209,6 +292,7 @@ public class SearchNameActivity extends AppCompatActivity{
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.search_by_name, menu);
+
 
 
 //        final MenuItem item = menu.findItem(R.id.recycler_view);
@@ -244,8 +328,14 @@ public class SearchNameActivity extends AppCompatActivity{
         switch (item.getItemId()) {
             case R.id.back_to_settings:
                 startActivity(intent);
-
                 return true;
+
+            case R.id.delete_all:
+                birdViewModel.deleteAllBirds();
+                Toast.makeText(this,"All birds deleted", Toast.LENGTH_SHORT).show();
+                return true;
+
+
             default:
                 return super.onOptionsItemSelected(item);
         }
