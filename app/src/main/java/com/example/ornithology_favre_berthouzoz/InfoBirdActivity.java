@@ -4,31 +4,22 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.ornithology_favre_berthouzoz.ui.main.DescriptionFragment;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.tabs.TabLayout;
 
-import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 
-import com.example.ornithology_favre_berthouzoz.ui.main.SectionsPagerAdapter;
-
-public class TabbedInfoBird extends AppCompatActivity {
+public class InfoBirdActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tabbed_info_bird);
-        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
-        ViewPager viewPager = findViewById(R.id.view_pager);
-        viewPager.setAdapter(sectionsPagerAdapter);
-        TabLayout tabs = findViewById(R.id.tabs);
-        tabs.setupWithViewPager(viewPager);
+//        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
+//        ViewPager viewPager = findViewById(R.id.view_pager);
+//        viewPager.setAdapter(sectionsPagerAdapter);
+//        TabLayout tabs = findViewById(R.id.tabs);
+//        tabs.setupWithViewPager(viewPager);
 
 
 
@@ -40,7 +31,7 @@ public class TabbedInfoBird extends AppCompatActivity {
 
         String birdName = intent.getStringExtra(AddEditBirdActivity.EXTRA_NAME);
         String familyName = intent.getStringExtra(AddEditBirdActivity.EXTRA_FAMILY);
-        String idBird = intent.getStringExtra(AddEditBirdActivity.EXTRA_IDBIRD);
+
         String biology = intent.getStringExtra(AddEditBirdActivity.EXTRA_BIOLOGY);
         String description = intent.getStringExtra(AddEditBirdActivity.EXTRA_DESCRIPTION);
 
@@ -52,10 +43,12 @@ public class TabbedInfoBird extends AppCompatActivity {
         //args.putString( "Description", description);
         //args.putString( "Biology", biology);
 
+
+
         DescriptionFragment descriptionFragment = DescriptionFragment.newInstance(description, biology);
        // descriptionFragment.setArguments(args);
 
-        //getSupportFragmentManager().beginTransaction().replace(R.id.containerFrag, descriptionFragment).commit();
+       getSupportFragmentManager().beginTransaction().replace(R.id.containerFrag, descriptionFragment).commit();
 
 
 //        // set Fragmentclass Arguments

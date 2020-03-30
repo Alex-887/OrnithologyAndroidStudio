@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.ornithology_favre_berthouzoz">
+    package="com.example.ornithology_favre_berthouzoz"
+    android:name=".Ornithology_Favre_Berthouzoz">
+
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+
+
 
     <application
         android:allowBackup="true"
@@ -14,19 +21,15 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".TabbedInfoBird"
+            android:name=".InfoBirdActivity"
             android:label="@string/title_activity_tabbed_info_bird"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".AddFamily"
+            android:name=".AddEditFamilyActivity"
             android:parentActivityName=".SearchFamilyActivity" />
         <activity
             android:name=".InfoFamily"
             android:parentActivityName=".SearchFamilyActivity" />
-        <activity
-            android:name=".InfoBird"
-            android:label="@string/info_bird"
-            android:parentActivityName=".SearchNameActivity" />
         <activity
             android:name=".AboutActivity"
             android:parentActivityName=".MainActivity" />

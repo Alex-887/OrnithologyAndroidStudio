@@ -78,6 +78,10 @@
     <string name="title_activity_bird_info">BirdInfo</string>
     <string name="title_activity_tabbed_info_bird">TabbedInfoBird</string>
     <string name="update">update</string>
+    <string name="description">Description :</string>
+    <string name="choose_file">Choose file</string>
+    <string name="family">Family</string>
+    <string name="Delete_all">Delete all</string>
 
 
 </resources>
