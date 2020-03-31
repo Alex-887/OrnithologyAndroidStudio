@@ -1,7 +1,6 @@
 package com.example.ornithology_favre_berthouzoz.ui.main;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -12,7 +11,6 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.example.ornithology_favre_berthouzoz.AddEditBirdActivity;
 import com.example.ornithology_favre_berthouzoz.R;
-import com.example.ornithology_favre_berthouzoz.TabbedInfoBird;
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to

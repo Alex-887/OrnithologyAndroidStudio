@@ -17,7 +17,7 @@
     <style name="DarkTheme" parent="AppTheme">
         <item name="textColor">#ffffff</item>
         <item name="metaTextColor">#606060</item>
-        <item name="bgColor">#000000</item>
+        <item name="bgColor">#252624</item>
     </style>
 
 

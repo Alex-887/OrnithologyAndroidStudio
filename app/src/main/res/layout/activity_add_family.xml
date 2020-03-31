@@ -4,14 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddEditFamilyActivity">
+    android:background="?attr/bgColor"
+    tools:context=".AddEditFamilyActivity"
+    >
 
     <EditText
         android:id="@+id/edit_txt_family"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:cursorVisible="true"
         android:hint="Family of the bird"
-        android:inputType="text" />
+        android:inputType="text"
+        android:textColor="?attr/textColor"
+        android:textColorHint="?attr/textColor"
+        android:textCursorDrawable="?attr/textColor"
+        android:backgroundTint="?attr/textColor"/>
 
 
 </LinearLayout>

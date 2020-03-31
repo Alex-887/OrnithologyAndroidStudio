@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
+    android:background="?attr/bgColor"
     tools:context=".SearchNameActivity">
 
     <Button
@@ -20,7 +21,7 @@
         android:background="@color/colorButton"
         android:text="@string/add_bird"
         android:textAllCaps="false"
-        android:textColor="#FFFFFF" />
+        android:textColor="?attr/textColor" />
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -28,7 +29,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/bird_item">
-
 
     </androidx.recyclerview.widget.RecyclerView>
 

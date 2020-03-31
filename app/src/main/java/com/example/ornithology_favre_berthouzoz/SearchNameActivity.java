@@ -1,5 +1,6 @@
 package com.example.ornithology_favre_berthouzoz;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -18,6 +19,7 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -35,18 +37,18 @@ public class SearchNameActivity extends AppCompatActivity{
     private FamilyViewModel familyViewModel;
     private SearchView searchView;
     private String family;
-
-
-
     private BirdViewModel birdFacto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (AppCompatDelegate.getDefaultNightMode()== AppCompatDelegate.MODE_NIGHT_YES){
+            setTheme(R.style.DarkTheme);
+        }
+        else {
+            setTheme(R.style.LightTheme);
+        }
         setContentView(R.layout.activity_search_name);
-
-
-
 
 
         //add button
@@ -67,6 +69,11 @@ public class SearchNameActivity extends AppCompatActivity{
 
         final BirdAdapter adapter = new BirdAdapter();
         recyclerView.setAdapter(adapter);
+        if (AppCompatDelegate.getDefaultNightMode()== AppCompatDelegate.MODE_NIGHT_YES){
+            recyclerView.setBackgroundColor(Color.parseColor("#252624"));
+        }
+
+
 
         familyViewModel = new ViewModelProvider(this).get(FamilyViewModel.class);
 
@@ -229,7 +236,6 @@ public class SearchNameActivity extends AppCompatActivity{
 
             }
 
-
             //bird update
             String name = data.getStringExtra(AddEditBirdActivity.EXTRA_NAME);
             String family = data.getStringExtra(AddEditBirdActivity.EXTRA_FAMILY);
@@ -276,7 +282,7 @@ public class SearchNameActivity extends AppCompatActivity{
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        Intent intent = new Intent(this, SettingsActivity.class);
+        Intent intent = new Intent(this, FragmentSettings.class);
 
         switch (item.getItemId()) {
             case R.id.back_to_settings:

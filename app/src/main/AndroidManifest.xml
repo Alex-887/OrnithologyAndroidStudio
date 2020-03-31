@@ -22,8 +22,8 @@
         tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:name=".InfoBirdActivity"
-            android:label="@string/title_activity_tabbed_info_bird"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            />
         <activity
             android:name=".AddEditFamilyActivity"
             android:label="@string/title_activity_search_name"
@@ -45,7 +45,7 @@
             android:parentActivityName=".MainActivity"
             tools:targetApi="jelly_bean" />
         <activity
-            android:name=".SettingsActivity"
+            android:name=".FragmentSettings"
             android:label="@string/settingsTitle"
             android:parentActivityName=".MainActivity" />
         <activity

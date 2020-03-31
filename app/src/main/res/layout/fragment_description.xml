@@ -4,9 +4,9 @@
     android:id="@+id/scrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
-
-
+    android:fillViewport="true"
+    android:theme="@style/AppTheme.NoActionBar"
+    >
 
 
 <FrameLayout
@@ -14,6 +14,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/descriptionFrag"
+    android:background="?attr/bgColor"
     tools:context=".ui.main.DescriptionFragment">
 
 
@@ -29,7 +30,8 @@
         android:layout_marginRight="20dp"
         android:layout_marginBottom="60dp"
         android:justificationMode="inter_word"
-        android:textColor="#000000"
+        android:textColor="?attr/textColor"
+        android:background="?attr/bgColor"
         android:textSize="20sp" />
 
 

@@ -1,11 +1,13 @@
 package com.example.ornithology_favre_berthouzoz;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import com.example.ornithology_favre_berthouzoz.ui.main.DescriptionFragment;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.widget.TextView;
 
@@ -14,6 +16,13 @@ public class InfoBirdActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (AppCompatDelegate.getDefaultNightMode()== AppCompatDelegate.MODE_NIGHT_YES){
+            setTheme(R.style.DarkTheme);
+        }
+        else {
+            setTheme(R.style.LightTheme);
+        }
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_tabbed_info_bird);
 //        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
 //        ViewPager viewPager = findViewById(R.id.view_pager);
@@ -26,6 +35,7 @@ public class InfoBirdActivity extends AppCompatActivity {
         //get the values of the bird clicked
         Intent intent = getIntent();
         TextView nameDisplay = findViewById(R.id.birdName);
+
         TextView descriptionDisplay = findViewById(R.id.edit_txt_description);
         TextView biologyDisplay = findViewById(R.id.edit_txt_biology);
 
@@ -37,6 +47,7 @@ public class InfoBirdActivity extends AppCompatActivity {
 
         //set bird as title
         nameDisplay.setText(birdName);
+
 
         //send the datas to the SectionsPagerAdapter with bundle
         //Bundle args = new Bundle();

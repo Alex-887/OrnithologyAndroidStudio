@@ -1,6 +1,7 @@
 package com.example.ornithology_favre_berthouzoz;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -11,12 +12,12 @@ import android.widget.SearchView;
 import android.widget.Toast;
 import com.example.ViewModel.BirdViewModel;
 import com.example.ViewModel.FamilyViewModel;
-import com.example.room.Bird;
 import com.example.room.Family;
 import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -38,6 +39,12 @@ public class SearchFamilyActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (AppCompatDelegate.getDefaultNightMode()== AppCompatDelegate.MODE_NIGHT_YES){
+            setTheme(R.style.DarkTheme);
+        }
+        else {
+            setTheme(R.style.LightTheme);
+        }
         setContentView(R.layout.activity_search_family);
 
         //add button
@@ -57,7 +64,9 @@ public class SearchFamilyActivity extends AppCompatActivity {
 
         final FamilyAdapter adapter = new FamilyAdapter();
         recyclerView.setAdapter(adapter);
-
+        if (AppCompatDelegate.getDefaultNightMode()== AppCompatDelegate.MODE_NIGHT_YES){
+            recyclerView.setBackgroundColor(Color.parseColor("#252624"));
+        }
         final BirdAdapter adapterBird = new BirdAdapter();
 
 
@@ -210,7 +219,7 @@ public class SearchFamilyActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        Intent intent = new Intent(this, SettingsActivity.class);
+        Intent intent = new Intent(this, FragmentSettings.class);
 
         switch (item.getItemId()) {
             case R.id.back_to_settings:
