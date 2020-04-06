@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void settings(View settingsView) {
-    Intent intent = new Intent(this, FragmentSettings.class);
+    Intent intent = new Intent(this, SettingsActivity.class);
      startActivity(intent);
 
     }

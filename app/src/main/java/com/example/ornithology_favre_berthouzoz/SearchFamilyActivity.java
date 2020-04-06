@@ -219,7 +219,7 @@ public class SearchFamilyActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        Intent intent = new Intent(this, FragmentSettings.class);
+        Intent intent = new Intent(this, SettingsActivity.class);
 
         switch (item.getItemId()) {
             case R.id.back_to_settings:
