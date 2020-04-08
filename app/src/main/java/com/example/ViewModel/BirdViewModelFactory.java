@@ -13,10 +13,6 @@ import androidx.lifecycle.ViewModelProvider;
 
 public class BirdViewModelFactory implements ViewModelProvider.Factory {
 
-//
-//    private final BirdRepository birdRepository;
-//    private final FamilyRepository familyRepository;
-//    private final Executor executor;
 
     private Application mApplication;
     private String mfamily;

@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.ornithology_favre_berthouzoz"
-    android:name=".Ornithology_Favre_Berthouzoz">
-
+    android:name=".Ornithology_Favre_Berthouzoz"
+    package="com.example.ornithology_favre_berthouzoz">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
-
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
-
-
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -20,16 +15,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+
         <activity
             android:name=".InfoBirdActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".AddEditFamilyActivity"
             android:label="@string/title_activity_search_name"
-            android:parentActivityName=".SearchFamilyActivity" />
-        <activity
-            android:name=".InfoFamily"
             android:parentActivityName=".SearchFamilyActivity" />
         <activity
             android:name=".AboutActivity"
@@ -45,13 +37,25 @@
             android:parentActivityName=".MainActivity"
             tools:targetApi="jelly_bean" />
         <activity
-            android:name=".SettingsActivity"
+            android:name=".ActivitySettings"
             android:label="@string/settingsTitle"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".AddEditBirdActivity"
             android:label="@string/add_bird"
             android:parentActivityName=".SearchNameActivity" />
+        <activity
+            android:name=".MainActivity"
+             />
+
+        <activity
+            android:name=".ui.login.SignUpActivity"
+            android:parentActivityName=".ui.login.LoginActivity" />
+
+        <activity android:name=".ui.login.LoginActivity"></activity>
+
+
+
         <activity android:name=".SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -59,7 +63,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

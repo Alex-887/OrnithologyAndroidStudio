@@ -121,7 +121,6 @@
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:background="@color/colorRed"
-                android:textColor="?attr/textColor"
                 android:text="Upload" />
 
 

@@ -7,6 +7,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.ornithology_favre_berthouzoz.ui.login.LoginActivity;
+
 public class SplashScreenActivity extends AppCompatActivity {
 
     @Override
@@ -15,7 +17,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
         EasySplashScreen config = new EasySplashScreen(SplashScreenActivity.this)
                 .withFullScreen()
-                .withTargetActivity(MainActivity.class)
+                .withTargetActivity(LoginActivity.class)
                 .withSplashTimeOut(1000)
                 .withBackgroundColor(Color.WHITE)
                 .withLogo(R.drawable.ornitop);

@@ -282,7 +282,7 @@ public class SearchNameActivity extends AppCompatActivity{
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        Intent intent = new Intent(this, SettingsActivity.class);
+        Intent intent = new Intent(this, ActivitySettings.class);
 
         switch (item.getItemId()) {
             case R.id.back_to_settings:

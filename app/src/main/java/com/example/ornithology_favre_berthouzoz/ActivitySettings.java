@@ -8,7 +8,7 @@ import android.widget.Switch;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
-public class SettingsActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
+public class ActivitySettings extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
 
     Switch changeview = null;
 
@@ -37,7 +37,7 @@ public class SettingsActivity extends AppCompatActivity implements CompoundButto
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         }
         finish();
-        startActivity(new Intent(SettingsActivity.this, SettingsActivity.this.getClass()));
+        startActivity(new Intent(ActivitySettings.this, ActivitySettings.this.getClass()));
 
 
     }
