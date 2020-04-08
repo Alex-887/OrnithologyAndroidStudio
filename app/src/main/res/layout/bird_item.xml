@@ -9,9 +9,9 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:background="@color/colorButton">
+        android:layout_height="match_parent"
+        android:background="@color/colorButton"
+        android:padding="8dp">
 
 
         <!--
@@ -27,6 +27,9 @@
 
             -->
 
+
+        <!--        android:textColor="?attr/textColor"-->
+
         <TextView
             android:id="@+id/text_view_bird"
             android:layout_width="wrap_content"
@@ -36,16 +39,15 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:text="Bird"
-            android:textColor="?attr/textColor"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
-        <TextView
-            android:id="@+id/text_view_family"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/text_view_bird"
-            android:textColor="?attr/textColor"
-            android:text="Family" />
+        <!--        <TextView-->
+        <!--            android:id="@+id/text_view_family"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_below="@id/text_view_bird"-->
+        <!--            android:textColor="?attr/textColor"-->
+        <!--            android:text="Family" />-->
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

@@ -50,21 +50,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-
-
-
-
-
-
         if (user != null) {
             // Name, email address, and profile photo Url
             String email = user.getEmail();
 
         }
-
-
-
-
 
 
     }
