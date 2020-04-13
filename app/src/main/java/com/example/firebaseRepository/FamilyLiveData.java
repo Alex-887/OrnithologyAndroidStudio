@@ -35,6 +35,9 @@ class FamilyLiveData extends LiveData<Family_Firebase> {
         Log.d(TAG, "onInactive");
     }
 
+
+    //observer pattern, to update if there is a change
+
     private class MyValueEventListener implements ValueEventListener {
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

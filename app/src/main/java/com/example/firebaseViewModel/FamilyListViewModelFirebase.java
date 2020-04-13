@@ -77,7 +77,18 @@ public class FamilyListViewModelFirebase extends AndroidViewModel {
         return mObservableFamilies;
     }
 
-    public void deleteAccount(Family_Firebase family, OnAsyncEventListener callback) {
+    public void createFamily(Family_Firebase family, OnAsyncEventListener callback) {
+        ((BaseApp) getApplication()).getFamilyRepository()
+                .insertFamily(family, callback);
+    }
+
+    public void updateFamily(Family_Firebase family, OnAsyncEventListener callback) {
+        ((BaseApp) getApplication()).getFamilyRepository()
+                .updateFamily(family, callback);
+    }
+
+
+    public void deleteFamily(Family_Firebase family, OnAsyncEventListener callback) {
         ((BaseApp) getApplication()).getFamilyRepository()
                 .deleteFamily(family, callback);
     }

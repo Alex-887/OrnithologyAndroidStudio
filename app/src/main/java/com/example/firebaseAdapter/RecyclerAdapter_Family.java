@@ -2,10 +2,10 @@ package com.example.firebaseAdapter;
 
 import android.os.Build;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.firebaseEntities.Bird_Firebase;
 import com.example.firebaseEntities.Family_Firebase;
 import com.example.ornithology_favre_berthouzoz.R;
 import com.example.util.RecyclerViewItemClickListener;
@@ -38,28 +38,24 @@ public class RecyclerAdapter_Family<T> extends RecyclerView.Adapter<RecyclerAdap
         this.listener = listener;
     }
 
+
+
     @Override
     public RecyclerAdapter_Family.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        // create a new view
-        TextView v = (TextView) LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.family_item, parent, false);
 
-        final ViewHolder viewHolder = new ViewHolder(v);
-        v.setOnClickListener(view -> listener.onItemClick(view, viewHolder.getAdapterPosition()));
-        v.setOnLongClickListener(view -> {
-            listener.onItemLongClick(view, viewHolder.getAdapterPosition());
-            return true;
-        });
-        return viewHolder;
+        View itemView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.family_item, parent, false);
+        // create a new view
+        return new RecyclerAdapter_Family.ViewHolder((TextView) itemView);
     }
 
     @Override
     public void onBindViewHolder(RecyclerAdapter_Family.ViewHolder holder, int position) {
         T item = data.get(position);
 
-        if (item.getClass().equals(Bird_Firebase.class))
-            holder.textView.setText(((Family_Firebase) item).getFamilyId());
+        if (item.getClass().equals(Family_Firebase.class))
+            holder.textView.setText(((Family_Firebase) item).getFamilyName());
 
 
     }
@@ -91,10 +87,10 @@ public class RecyclerAdapter_Family<T> extends RecyclerView.Adapter<RecyclerAdap
 
                 @Override
                 public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-                    if (RecyclerAdapter_Family.this.data instanceof Bird_Firebase) {
+                    if (RecyclerAdapter_Family.this.data instanceof Family_Firebase) {
                         return ((Family_Firebase) RecyclerAdapter_Family.this.data.get(oldItemPosition)).getFamilyId().equals(((Family_Firebase) data.get(newItemPosition)).getFamilyId());
                     }
-                    if (RecyclerAdapter_Family.this.data instanceof Bird_Firebase) {
+                    if (RecyclerAdapter_Family.this.data instanceof Family_Firebase) {
                         return ((Family_Firebase) RecyclerAdapter_Family.this.data.get(oldItemPosition)).getFamilyId().equals(
                                 ((Family_Firebase) data.get(newItemPosition)).getFamilyId());
                     }
@@ -108,13 +104,13 @@ public class RecyclerAdapter_Family<T> extends RecyclerView.Adapter<RecyclerAdap
                         Family_Firebase newAccount = (Family_Firebase) data.get(newItemPosition);
                         Family_Firebase oldAccount = (Family_Firebase) RecyclerAdapter_Family.this.data.get(newItemPosition);
                         return newAccount.getFamilyId().equals(oldAccount.getFamilyId())
-                                && Objects.equals(newAccount.getFamily(), oldAccount.getFamily());
+                                && Objects.equals(newAccount.getFamilyName(), oldAccount.getFamilyName());
                     }
                     if (RecyclerAdapter_Family.this.data instanceof Family_Firebase) {
                         Family_Firebase newClient = (Family_Firebase) data.get(newItemPosition);
                         Family_Firebase oldClient = (Family_Firebase) RecyclerAdapter_Family.this.data.get(newItemPosition);
                         return Objects.equals(newClient.getFamilyId(), oldClient.getFamilyId())
-                                && Objects.equals(newClient.getFamily(), oldClient.getFamily());
+                                && Objects.equals(newClient.getFamilyName(), oldClient.getFamilyName());
                     }
                     return false;
                 }

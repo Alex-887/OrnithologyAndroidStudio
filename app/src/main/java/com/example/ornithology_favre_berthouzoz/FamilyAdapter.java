@@ -6,17 +6,16 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.ViewModel.FamilyViewModel;
-import com.example.room.Family;
-import com.example.room.FamilyDao;
+import com.example.firebaseEntities.Family_Firebase;
+
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-class FamilyAdapter extends ListAdapter<Family, FamilyAdapter.FamilyHolder> {
-
-    private FamilyDao dao;
+class FamilyAdapter extends ListAdapter<Family_Firebase, FamilyAdapter.FamilyHolder> {
 
 
     private FamilyViewModel familyViewModel;
@@ -35,17 +34,17 @@ class FamilyAdapter extends ListAdapter<Family, FamilyAdapter.FamilyHolder> {
 
 
     }
-    
 
-    private static final DiffUtil.ItemCallback<Family> DIFF_CALLBACK = new DiffUtil.ItemCallback<Family>() {
+
+    private static final DiffUtil.ItemCallback<Family_Firebase> DIFF_CALLBACK = new DiffUtil.ItemCallback<Family_Firebase>() {
         @Override
-        public boolean areItemsTheSame(@NonNull Family oldItem, @NonNull Family newItem) {
-            return oldItem.getFamily() == newItem.getFamily(); //if the id are the same, we have the same object twice
+        public boolean areItemsTheSame(@NonNull Family_Firebase oldItem, @NonNull Family_Firebase newItem) {
+            return oldItem.getFamilyName() == newItem.getFamilyName(); //if the id are the same, we have the same object twice
         }
 
         @Override
-        public boolean areContentsTheSame(@NonNull Family oldItem, @NonNull Family newItem) {
-            return  oldItem.getFamily().equals(newItem.getFamily());
+        public boolean areContentsTheSame(@NonNull Family_Firebase oldItem, @NonNull Family_Firebase newItem) {
+            return  oldItem.getFamilyId().equals(newItem.getFamilyId());
         }
     };
 
@@ -63,8 +62,8 @@ class FamilyAdapter extends ListAdapter<Family, FamilyAdapter.FamilyHolder> {
     @Override
     public void onBindViewHolder(@NonNull FamilyHolder holder, int position) {
 
-        Family currentFamily = getItem(position);
-        holder.textViewFamily.setText(currentFamily.getFamily());
+        Family_Firebase currentFamily = getItem(position);
+        holder.textViewFamily.setText(currentFamily.getFamilyName());
 
 
 
@@ -73,9 +72,10 @@ class FamilyAdapter extends ListAdapter<Family, FamilyAdapter.FamilyHolder> {
 
 
     //get the position of a selected bird
-    public Family getFamilyAt(int position) {
+    public Family_Firebase getFamilyAt(int position) {
         return getItem(position);
     }
+
 
 
     class FamilyHolder extends RecyclerView.ViewHolder {
@@ -103,7 +103,7 @@ class FamilyAdapter extends ListAdapter<Family, FamilyAdapter.FamilyHolder> {
 
     //update
     public interface OnItemClickListener {
-        void onItemClick(Family family);
+        void onItemClick(Family_Firebase family);
     }
 
 

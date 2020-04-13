@@ -54,8 +54,10 @@ public class FamilyListLiveData extends LiveData<List<Family_Firebase>> {
         List<Family_Firebase> families = new ArrayList<>();
         for (DataSnapshot childSnapshot : snapshot.getChildren()) {
             Family_Firebase entity = childSnapshot.getValue(Family_Firebase.class);
-            entity.setFamilyId(childSnapshot.getKey())
-            .child(entity.getFamily());
+            entity.setFamilyId(childSnapshot.getKey());
+
+
+            families.add(entity);
 
         }
         return families;

@@ -9,7 +9,7 @@ public class Family_Firebase {
 
 
 
-    private String family;
+    private String familyName;
     private String familyId;
 
 
@@ -19,19 +19,19 @@ public class Family_Firebase {
     }
 
 
-    public Family_Firebase(String family, String familyId) {
-        this.family = family;
+    public Family_Firebase(String familyName, String familyId) {
+        this.familyName = familyName;
         this.familyId = familyId;
     }
 
 
 
-    public String getFamily() {
-        return family;
+    public String getFamilyName() {
+        return familyName;
     }
 
-    public void setFamily(String family) {
-        this.family = family;
+    public void setFamilyName(String familyName) {
+        this.familyName = familyName;
     }
 
     @Exclude
@@ -57,13 +57,16 @@ public class Family_Firebase {
     @Exclude
     public Map<String, Object> toMap() {
         HashMap<String, Object> result = new HashMap<>();
-        result.put("family", family);
+        result.put("familyName", familyName);
 
         return result;
     }
 
 
-
+    @Override
+    public String toString() {
+        return familyName;
+    }
 
 
 

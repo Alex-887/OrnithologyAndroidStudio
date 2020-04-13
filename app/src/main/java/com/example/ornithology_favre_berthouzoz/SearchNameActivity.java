@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.SearchView;
 
-import com.example.firebaseDatabase.FirebaseDatabaseHelper;
 import com.example.firebaseRepository.BirdRepositoryFirebase;
 import com.example.firebaseEntities.Bird_Firebase;
 import com.example.firebaseAdapter.RecyclerAdapter_Bird;
@@ -104,32 +103,6 @@ public class SearchNameActivity extends AppCompatActivity{
 
 
 
-        new FirebaseDatabaseHelper().readBirds(new FirebaseDatabaseHelper.DataBirdsStatus() {
-            @Override
-            public void DataIsLoaded(List<Bird_Firebase> birds, List<String> keys) {
-                findViewById(R.id.progress_bar).setVisibility(View.GONE);
-                new RecyclerView_Bird().setConfig(mRecyclerView, SearchNameActivity.this,
-                        birds, keys);
-
-
-
-            }
-
-            @Override
-            public void DataIsInserted() {
-
-            }
-
-            @Override
-            public void DataIsUpdated() {
-
-            }
-
-            @Override
-            public void DataIsDeleted() {
-
-            }
-        });
 
 
         if (AppCompatDelegate.getDefaultNightMode()== AppCompatDelegate.MODE_NIGHT_YES){

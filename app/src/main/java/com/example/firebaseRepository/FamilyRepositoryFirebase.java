@@ -38,8 +38,7 @@ public class FamilyRepositoryFirebase {
 
     public LiveData<List<Family_Firebase>> getAllFamilies(){
         DatabaseReference reference = FirebaseDatabase.getInstance()
-                .getReference("families")
-                ;
+                .getReference("families");
 
         return new FamilyListLiveData(reference);
     }
@@ -52,17 +51,12 @@ public class FamilyRepositoryFirebase {
     // Firebase Database paths must not contain '.', '#', '$', '[', or ']'
     public void insertFamily(final Family_Firebase family, final OnAsyncEventListener callback) {
 
-        DatabaseReference reference = FirebaseDatabase.getInstance()
-                .getReference("families")
-                .child(family.getFamilyId()) //familyId1
-                .child("familyName");
-        String key = reference.push().getKey();
+        String id = FirebaseDatabase.getInstance()
+                .getReference("families").push().getKey();
 
         FirebaseDatabase.getInstance()
                 .getReference("families")
-                .child(family.getFamilyId())
-                .child("familyName")
-                .child(key)
+                .child(id)
                 .setValue(family, (databaseError, databaseReference) -> {
                     if (databaseError != null) {
                         callback.onFailure(databaseError.toException());
@@ -74,7 +68,6 @@ public class FamilyRepositoryFirebase {
 
 
 
-    //a checker
     public void updateFamily(final Family_Firebase family, final OnAsyncEventListener callback) {
         FirebaseDatabase.getInstance()
                 .getReference("families")

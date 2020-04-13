@@ -40,7 +40,7 @@ public class InfoBirdActivity extends AppCompatActivity {
         TextView biologyDisplay = findViewById(R.id.edit_txt_biology);
 
         String birdName = intent.getStringExtra(AddEditBirdActivity.EXTRA_NAME);
-        String familyName = intent.getStringExtra(AddEditBirdActivity.EXTRA_FAMILY);
+       // String familyName = intent.getStringExtra(AddEditBirdActivity.EXTRA_FAMILY);
 
         String biology = intent.getStringExtra(AddEditBirdActivity.EXTRA_BIOLOGY);
         String description = intent.getStringExtra(AddEditBirdActivity.EXTRA_DESCRIPTION);

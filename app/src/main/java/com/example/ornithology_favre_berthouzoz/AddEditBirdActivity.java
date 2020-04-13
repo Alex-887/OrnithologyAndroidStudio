@@ -39,8 +39,7 @@ public class AddEditBirdActivity extends AppCompatActivity {
             "com.example.ornithology_favre_berthouzoz.EXTRA_IDBIRD";
     public static final String EXTRA_NAME =
             "com.example.ornithology_favre_berthouzoz.EXTRA_NAME";
-    public static final String EXTRA_FAMILY =
-            "com.example.ornithology_favre_berthouzoz.EXTRA_FAMILY";
+
     public static final String EXTRA_DESCRIPTION =
             "com.example.ornithology_favre_berthouzoz.EXTRA_DESCRIPTION";
     public static final String EXTRA_BIOLOGY =
@@ -151,7 +150,7 @@ public class AddEditBirdActivity extends AppCompatActivity {
             setTitle("Edit a bird");
 
             editName.setText(intent.getStringExtra(EXTRA_NAME));
-            editFamily.setText(intent.getStringExtra(EXTRA_FAMILY));
+          //  editFamily.setText(intent.getStringExtra(EXTRA_FAMILY));
             editBiology.setText(intent.getStringExtra(EXTRA_BIOLOGY));
             editDescription.setText(intent.getStringExtra(EXTRA_DESCRIPTION));
         }
@@ -207,7 +206,7 @@ public class AddEditBirdActivity extends AppCompatActivity {
 
         Intent data = new Intent();
         data.putExtra(EXTRA_NAME, name);
-        data.putExtra(EXTRA_FAMILY, family);
+        //data.putExtra(EXTRA_FAMILY, family);
         data.putExtra(EXTRA_DESCRIPTION, description);
         data.putExtra(EXTRA_BIOLOGY, biology);
 

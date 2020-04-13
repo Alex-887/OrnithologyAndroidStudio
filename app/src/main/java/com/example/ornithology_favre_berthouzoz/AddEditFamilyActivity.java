@@ -15,6 +15,8 @@ public class AddEditFamilyActivity extends AppCompatActivity {
 
     public static final String EXTRA_FAMILY =
             "com.example.ornithology_favre_berthouzoz.EXTRA_FAMILY";
+    public static final String EXTRA_FAMILYID =
+            "com.example.ornithology_favre_berthouzoz.EXTRA_FAMILYID";
 
     private EditText editFamily;
 
@@ -61,25 +63,28 @@ public class AddEditFamilyActivity extends AppCompatActivity {
 
 
     private void saveFamily(){
-        String family = editFamily.getText().toString();
+
+        String familyName = editFamily.getText().toString();
 
 
         //if it's not empty, save, otherwise send a toast message
-        if(family.trim().isEmpty() ){
+        if(familyName.trim().isEmpty() ){
             Toast.makeText(this,"Please enter a family", Toast.LENGTH_SHORT).show();
             return;
         }
 
 
         Intent data = new Intent();
-        data.putExtra(EXTRA_FAMILY, family);
+        data.putExtra(EXTRA_FAMILY, familyName);
 
 
         //update with id
-        //family = getIntent().getStringExtra(EXTRA_FAMILY, null); //-1 because we will never have an entry which is -1
-        if(family == null){
-            data.putExtra(EXTRA_FAMILY, family);
+        String familyId = getIntent().getStringExtra(EXTRA_FAMILYID);
+        if(familyId != null){
+            data.putExtra(EXTRA_FAMILYID, familyId);
         }
+
+
 
 
         setResult(RESULT_OK, data);

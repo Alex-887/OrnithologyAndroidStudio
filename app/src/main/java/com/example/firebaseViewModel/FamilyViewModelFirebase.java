@@ -72,4 +72,15 @@ public class FamilyViewModelFirebase extends AndroidViewModel {
         ((BaseApp) getApplication()).getFamilyRepository()
                 .updateFamily(family, callback);
     }
+
+
+    public void deleteFamily(Family_Firebase family, OnAsyncEventListener callback) {
+        ((BaseApp) getApplication()).getFamilyRepository()
+                .deleteFamily(family, callback);
+    }
+
+
+
+
+
 }
