@@ -1,11 +1,11 @@
-package com.example.RecyclerView;
+package com.example.firebaseAdapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.firebase.Bird_Firebase;
+import com.example.firebaseEntities.Bird_Firebase;
 import com.example.ornithology_favre_berthouzoz.R;
 import java.util.List;
 

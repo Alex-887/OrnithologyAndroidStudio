@@ -1,7 +1,7 @@
-package com.example.firebase;
+package com.example.firebaseDatabase;
 
-import com.example.room.Bird;
-import com.example.room.Family;
+import com.example.firebaseEntities.Bird_Firebase;
+import com.example.firebaseEntities.Family_Firebase;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -64,6 +64,7 @@ public class FirebaseDatabaseHelper {
                 for(DataSnapshot keyNode : dataSnapshot.getChildren()){
                     birdsKeys.add(keyNode.getKey());
                     Bird_Firebase bird = keyNode.getValue(Bird_Firebase.class);
+
                     birds.add(bird);
 
 

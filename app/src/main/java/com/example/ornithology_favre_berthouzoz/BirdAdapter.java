@@ -6,8 +6,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.ViewModel.BirdViewModel;
-import com.example.room.Bird;
-import com.example.room.BirdDao;
+import com.example.firebaseEntities.Bird_Firebase;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
@@ -15,9 +14,9 @@ import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-public class BirdAdapter extends ListAdapter<Bird, BirdAdapter.BirdHolder>  {
+public class BirdAdapter extends ListAdapter<Bird_Firebase, BirdAdapter.BirdHolder>  {
 
-    private BirdDao birdDao;
+
 
 
     private BirdViewModel birdViewModel;
@@ -37,15 +36,15 @@ public class BirdAdapter extends ListAdapter<Bird, BirdAdapter.BirdHolder>  {
 
     //check if the items already exists
 
-    private static final DiffUtil.ItemCallback<Bird> DIFF_CALLBACK = new DiffUtil.ItemCallback<Bird>() {
+    private static final DiffUtil.ItemCallback<Bird_Firebase> DIFF_CALLBACK = new DiffUtil.ItemCallback<Bird_Firebase>() {
         @Override
-        public boolean areItemsTheSame(@NonNull Bird oldItem, @NonNull Bird newItem) {
+        public boolean areItemsTheSame(@NonNull Bird_Firebase oldItem, @NonNull Bird_Firebase newItem) {
             return oldItem.getId() == newItem.getId(); //if the id are the same, we have the same object twice
         }
 
         @Override
-        public boolean areContentsTheSame(@NonNull Bird oldItem, @NonNull Bird newItem) {
-            return oldItem.getFamily().equals(newItem.getFamily()) && oldItem.getName()
+        public boolean areContentsTheSame(@NonNull Bird_Firebase oldItem, @NonNull Bird_Firebase newItem) {
+            return oldItem.getFamilyId().equals(newItem.getFamilyId()) && oldItem.getName()
                     .equals(newItem.getName()) ;
         }
     };
@@ -66,17 +65,18 @@ public class BirdAdapter extends ListAdapter<Bird, BirdAdapter.BirdHolder>  {
 
 
         //set the right name and the right family at the bird in a list
-        Bird currentBird = getItem(position);
+        Bird_Firebase currentBird = getItem(position);
 
         holder.textViewBird.setText(currentBird.getName());
-        holder.textViewFamily.setText(currentBird.getFamily());
+
+       // holder.textViewFamily.setText(currentBird.getFamily()); //get family id
 
     }
 
 
 
     //get the position of a selected bird
-    public Bird getBirdAt(int position) {
+    public Bird_Firebase getBirdAt(int position) {
         return getItem(position);
     }
 
@@ -149,7 +149,7 @@ public class BirdAdapter extends ListAdapter<Bird, BirdAdapter.BirdHolder>  {
 
     //update
     public interface OnItemClickListener {
-        void onItemClick(Bird bird);
+        void onItemClick(Bird_Firebase bird);
     }
 
 

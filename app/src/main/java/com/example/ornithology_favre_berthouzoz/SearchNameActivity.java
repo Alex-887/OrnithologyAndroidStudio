@@ -2,30 +2,21 @@ package com.example.ornithology_favre_berthouzoz;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.SearchView;
-import android.widget.Toast;
 
-import com.example.RecyclerView.RecyclerView_Bird;
-import com.example.ViewModel.BirdViewModel;
-import com.example.ViewModel.BirdViewModelFactory;
-import com.example.ViewModel.FamilyViewModel;
-import com.example.firebase.Bird_Firebase;
-import com.example.firebase.FirebaseDatabaseHelper;
+import com.example.firebaseDatabase.FirebaseDatabaseHelper;
+import com.example.firebaseRepository.BirdRepositoryFirebase;
+import com.example.firebaseEntities.Bird_Firebase;
+import com.example.firebaseAdapter.RecyclerAdapter_Bird;
+import com.example.firebaseAdapter.RecyclerView_Bird;
+import com.example.firebaseViewModel.BirdViewModelFirebase;
 
 import java.util.List;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -34,14 +25,20 @@ public class SearchNameActivity extends AppCompatActivity{
     public static final int ADD_BIRD_REQUEST = 1;
     public static final int EDIT_BIRD_REQUEST = 2;
 
+    private static final String TAG = "AccountsActivity";
 
-    private BirdViewModel birdViewModel;
-    private FamilyViewModel familyViewModel;
+    private List<Bird_Firebase> birds;
+    private BirdViewModelFirebase birdViewModel;
     private SearchView searchView;
     private String family;
+    private BirdRepositoryFirebase birdrepo;
     private BirdAdapter birdAdapter;
+    private RecyclerAdapter_Bird<Bird_Firebase> adapter;
 
     private RecyclerView mRecyclerView;
+
+    public SearchNameActivity() {
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +79,31 @@ public class SearchNameActivity extends AppCompatActivity{
 
 
 
+//        birds = new ArrayList<>();
+//        adapter = new RecyclerAdapter_Bird<>(new RecyclerViewItemClickListener() {
+//            @Override
+//            public void onItemClick(View v, int position) {
+//                Log.d(TAG, "clicked position:" + position);
+//                Log.d(TAG, "clicked on: " + birds.get(position).getName());
+//
+//                Intent intent = new Intent(SearchNameActivity.this, InfoBirdActivity.class);
+//                intent.putExtra("birdId", birds.get(position).getId());
+//                startActivity(intent);
+//            }
+//
+//            @Override
+//            public void onItemLongClick(View v, int position) {
+//                Log.d(TAG, "longClicked position:" + position);
+//                Log.d(TAG, "longClicked on: " + birds.get(position).getName());
+//
+//                //createDeleteDialog(position);
+//            }
+//
+//    });
+
+
+
+
         new FirebaseDatabaseHelper().readBirds(new FirebaseDatabaseHelper.DataBirdsStatus() {
             @Override
             public void DataIsLoaded(List<Bird_Firebase> birds, List<String> keys) {
@@ -116,8 +138,8 @@ public class SearchNameActivity extends AppCompatActivity{
 
 
 
-        //recycler view
-        //familyViewModel = new ViewModelProvider(this).get(FamilyViewModel.class);
+
+       // birdViewModel = new ViewModelProvider(this).get(BirdViewModelFirebase.class);
 
 
 
@@ -153,15 +175,15 @@ public class SearchNameActivity extends AppCompatActivity{
 //        //if the user click directly on the button search by name -> means he didn't come from another activity
 //        else{
 //
-//            //family is null cause it is not used, getAllBirds() requires no arguments
+            //family is null cause it is not used, getAllBirds() requires no arguments
 //         BirdViewModelFactory factory = new BirdViewModelFactory(this.getApplication(), "");
 //
 //         birdViewModel = new ViewModelProvider(this, factory).get(BirdViewModel.class);
 //
-//            birdViewModel.getAllBirds().observe(this, new Observer<List<Bird>>() {
+//            birdViewModel.getBirds().observe(this, new Observer<List<Bird_Firebase>>() {
 //
 //            @Override
-//            public void onChanged(@Nullable List<Bird> birds) { //everytime something changes, the adapter is updated
+//            public void onChanged(@Nullable List<Bird_Firebase> birds) { //everytime something changes, the adapter is updated
 //                //update the recycler view
 //                adapter.submitList(birds);
 //            }

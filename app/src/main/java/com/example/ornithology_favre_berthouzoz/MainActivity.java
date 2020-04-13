@@ -83,8 +83,12 @@ public class MainActivity extends AppCompatActivity {
         case R.id.menuLogout:
 
             FirebaseAuth.getInstance().signOut();
+
             finish();
+
+
             startActivity(new Intent(this, LoginActivity.class));
+
             break;
         }
 

@@ -67,6 +67,7 @@ class FamilyAdapter extends ListAdapter<Family, FamilyAdapter.FamilyHolder> {
         holder.textViewFamily.setText(currentFamily.getFamily());
 
 
+
     }
 
 
