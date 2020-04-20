@@ -1,4 +1,4 @@
-package com.example.ornithology_favre_berthouzoz;
+package com.example.ornithology_favre_berthouzoz.ui.main;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -9,19 +9,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.SearchView;
 import android.widget.Toast;
 
-import com.example.ViewModel.FamilyViewModel;
-import com.example.firebaseAdapter.RecyclerAdapter_Family;
 import com.example.firebaseEntities.Family_Firebase;
-import com.example.firebaseRepository.FamilyRepositoryFirebase;
 import com.example.firebaseViewModel.FamilyListViewModelFirebase;
-import com.example.firebaseViewModel.FamilyViewModelFirebase;
+import com.example.ornithology_favre_berthouzoz.R;
 import com.example.util.OnAsyncEventListener;
-import com.example.util.RecyclerViewItemClickListener;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -41,20 +35,11 @@ public class SearchFamilyActivity extends AppCompatActivity {
     public static final int ADD_FAMILY_REQUEST = 1;
     public static final int EDIT_FAMILY_REQUEST = 2;
 
-    public static final String EXTRA_FAMILY =
-            "com.example.ornithology_favre_berthouzoz.EXTRA_FAMILY";
-
     private static final String TAG = "FamiliesActivity";
 
 
     private List<Family_Firebase> families;
-    private RecyclerAdapter_Family<Family_Firebase> adapter;
     private FamilyListViewModelFirebase viewModelList;
-    private FamilyRepositoryFirebase familyRepository;
-    private FamilyViewModelFirebase familyViewModelFirebase;
-
-
-    private SearchView searchView;
 
 
     @Override
@@ -81,27 +66,6 @@ public class SearchFamilyActivity extends AppCompatActivity {
 
 
 
-//        families = new ArrayList<>();
-//        adapter = new RecyclerAdapter_Family<>(new RecyclerViewItemClickListener() {
-//            @Override
-//            public void onItemClick(View v, int position) {
-//                Log.d(TAG, "clicked position:" + position);
-//                Log.d(TAG, "clicked on: " + families.get(position).getFamilyName());
-//
-////                Intent intent = new Intent(SearchFamilyActivity.this, AccountDetailActivity.class);
-////                intent.putExtra("accountId", accounts.get(position).getId());
-////                startActivity(intent);
-//            }
-//
-//            @Override
-//            public void onItemLongClick(View v, int position) {
-//                Log.d(TAG, "longClicked position:" + position);
-//                Log.d(TAG, "longClicked on: " + families.get(position).getFamilyName());
-//
-//                //createDeleteDialog(position);
-//            }
-//        });
-
 
 
 
@@ -118,7 +82,6 @@ public class SearchFamilyActivity extends AppCompatActivity {
         if (AppCompatDelegate.getDefaultNightMode()== AppCompatDelegate.MODE_NIGHT_YES){
             recyclerView.setBackgroundColor(Color.parseColor("#252624"));
         }
-        final BirdAdapter adapterBird = new BirdAdapter();
 
 
 
@@ -135,7 +98,6 @@ public class SearchFamilyActivity extends AppCompatActivity {
             }
         });
 
-        recyclerView.setAdapter(adapter);
 
 
 
@@ -161,6 +123,7 @@ public class SearchFamilyActivity extends AppCompatActivity {
 
                         Intent intent = new Intent(SearchFamilyActivity.this, AddEditFamilyActivity.class);
                         intent.putExtra(AddEditFamilyActivity.EXTRA_FAMILY, adapter.getFamilyAt(viewHolder.getAdapterPosition()).getFamilyName());
+                        intent.putExtra(AddEditFamilyActivity.EXTRA_FAMILYID, adapter.getFamilyAt(viewHolder.getAdapterPosition()).getFamilyId());
 
                         startActivityForResult(intent, EDIT_FAMILY_REQUEST);
 
@@ -180,13 +143,13 @@ public class SearchFamilyActivity extends AppCompatActivity {
                         viewModelList.deleteFamily(adapter.getFamilyAt(viewHolder.getAdapterPosition()), new OnAsyncEventListener() {
                             @Override
                             public void onSuccess() {
-                                Log.d(TAG, "createAccount: success");
+                                Log.d(TAG, "Delete family: success");
                               //  Toast.makeText(SearchFamilyActivity.this, "Family deleted.", Toast.LENGTH_SHORT).show();
                             }
 
                             @Override
                             public void onFailure(Exception e) {
-                                Log.d(TAG, "createAccount: failure", e);
+                                Log.d(TAG, "Create family: failure", e);
                                 //Toast.makeText(SearchFamilyActivity.this, "An error occured during deletion.", Toast.LENGTH_SHORT).show();
                             }
                         });
@@ -209,7 +172,7 @@ public class SearchFamilyActivity extends AppCompatActivity {
                         Intent intent = new Intent(SearchFamilyActivity.this, SearchNameActivity.class);
 
                         intent.putExtra(AddEditFamilyActivity.EXTRA_FAMILY, family.getFamilyName());
-
+                        intent.putExtra(AddEditFamilyActivity.EXTRA_FAMILYID, family.getFamilyId());
                         //start the menu of the chosen family
                         startActivity(intent);
 
@@ -232,7 +195,7 @@ public class SearchFamilyActivity extends AppCompatActivity {
         if (requestCode == ADD_FAMILY_REQUEST && resultCode == RESULT_OK) {
             //get the string out of the edit text
             String family = data.getStringExtra(AddEditFamilyActivity.EXTRA_FAMILY);
-
+            String familyId = data.getStringExtra(AddEditFamilyActivity.EXTRA_FAMILYID);
 
             Family_Firebase familyObject = new Family_Firebase();
 
@@ -253,13 +216,11 @@ public class SearchFamilyActivity extends AppCompatActivity {
             Toast.makeText(this, "Family saved", Toast.LENGTH_SHORT).show();
 
 
-
+            Toast.makeText(this, "Family updated", Toast.LENGTH_SHORT).show();
         } else if (requestCode == EDIT_FAMILY_REQUEST && resultCode == RESULT_OK) {
 
 
             String familyId = data.getStringExtra(AddEditFamilyActivity.EXTRA_FAMILYID);
-
-            //String familyId = getIntent().getStringExtra("familyId");
 
             if (familyId == null) {
 
@@ -330,7 +291,17 @@ public class SearchFamilyActivity extends AppCompatActivity {
             case R.id.delete_all:
 
 
-                //familyRepository.deleteAllFamilies();
+                viewModelList.deleteAllFamilies(new OnAsyncEventListener() {
+                    @Override
+                    public void onSuccess() {
+
+                    }
+
+                    @Override
+                    public void onFailure(Exception e) {
+
+                    }
+                });
                 Toast.makeText(this,"All families deleted", Toast.LENGTH_SHORT).show();
                 return true;
             default:

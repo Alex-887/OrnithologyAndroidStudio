@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:id="@+id/containerFrag"
     android:theme="@style/AppTheme.NoActionBar"
-    tools:context=".InfoBirdActivity"
+    tools:context=".ui.main.InfoBirdActivity"
     >
 
     <com.google.android.material.appbar.AppBarLayout

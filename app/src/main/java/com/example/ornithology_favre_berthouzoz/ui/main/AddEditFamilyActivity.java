@@ -1,4 +1,4 @@
-package com.example.ornithology_favre_berthouzoz;
+package com.example.ornithology_favre_berthouzoz.ui.main;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -10,6 +10,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.ornithology_favre_berthouzoz.R;
 
 public class AddEditFamilyActivity extends AppCompatActivity {
 
@@ -34,7 +36,7 @@ public class AddEditFamilyActivity extends AppCompatActivity {
 
 
 
-        editFamily  =  findViewById(R.id.edit_txt_family);
+        editFamily = findViewById(R.id.edit_txt_family);
 
         //close icon
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.close);
@@ -76,6 +78,7 @@ public class AddEditFamilyActivity extends AppCompatActivity {
 
         Intent data = new Intent();
         data.putExtra(EXTRA_FAMILY, familyName);
+
 
 
         //update with id

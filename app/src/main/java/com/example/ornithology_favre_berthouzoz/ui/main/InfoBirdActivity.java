@@ -1,9 +1,10 @@
-package com.example.ornithology_favre_berthouzoz;
+package com.example.ornithology_favre_berthouzoz.ui.main;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 
+import com.example.ornithology_favre_berthouzoz.R;
+import com.example.ornithology_favre_berthouzoz.ui.main.AddEditBirdActivity;
 import com.example.ornithology_favre_berthouzoz.ui.main.DescriptionFragment;
 
 import androidx.appcompat.app.AppCompatActivity;

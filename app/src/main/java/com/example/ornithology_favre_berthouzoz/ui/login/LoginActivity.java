@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.ornithology_favre_berthouzoz.MainActivity;
+import com.example.ornithology_favre_berthouzoz.ui.main.MainActivity;
 import com.example.ornithology_favre_berthouzoz.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -69,7 +69,7 @@ public class LoginActivity extends AppCompatActivity {
                     mMail.setError(null);
                     mMail.requestFocus();
                 } else
-                if(pwd.isEmpty()){
+                if(pwd.isEmpty() ){
                     mPassword.setError(null);
                     mPassword.requestFocus();
                 }

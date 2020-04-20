@@ -7,7 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.ornithology_favre_berthouzoz.MainActivity;
+import com.example.ornithology_favre_berthouzoz.ui.main.MainActivity;
 import com.example.ornithology_favre_berthouzoz.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -55,13 +55,19 @@ public class SignUpActivity extends AppCompatActivity {
                         if(mail.isEmpty() && pwd.isEmpty() ){
                         Toast.makeText(SignUpActivity.this,"The field are empty", Toast.LENGTH_SHORT).show();
                     } else
+                        if(pwd.length()<6){
+                            Toast.makeText(SignUpActivity.this,"Password must be at least 6 characters long", Toast.LENGTH_SHORT).show();
+                        }
+                        else
+
+
                         if(!(mail.isEmpty() && pwd.isEmpty())){
                             mAuth.createUserWithEmailAndPassword(mail, pwd).addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
 
                                     if(!task.isSuccessful()){
-                                        Toast.makeText(SignUpActivity.this,"SignUp unsuccessful", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(SignUpActivity.this,"Cannot register", Toast.LENGTH_SHORT).show();
 
                                     }
 

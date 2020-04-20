@@ -1,4 +1,4 @@
-package com.example.ornithology_favre_berthouzoz;
+package com.example.ornithology_favre_berthouzoz.ui.main;
 
 import androidx.appcompat.app.AppCompatActivity;
 import gr.net.maroulis.library.EasySplashScreen;
@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.ornithology_favre_berthouzoz.R;
 import com.example.ornithology_favre_berthouzoz.ui.login.LoginActivity;
 
 public class SplashScreenActivity extends AppCompatActivity {

@@ -1,4 +1,4 @@
-package com.example.ornithology_favre_berthouzoz;
+package com.example.ornithology_favre_berthouzoz.ui.main;
 
 import android.content.ContentResolver;
 import android.content.Intent;
@@ -17,6 +17,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.firebaseEntities.Upload;
+import com.example.ornithology_favre_berthouzoz.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
@@ -39,11 +41,12 @@ public class AddEditBirdActivity extends AppCompatActivity {
             "com.example.ornithology_favre_berthouzoz.EXTRA_IDBIRD";
     public static final String EXTRA_NAME =
             "com.example.ornithology_favre_berthouzoz.EXTRA_NAME";
-
     public static final String EXTRA_DESCRIPTION =
             "com.example.ornithology_favre_berthouzoz.EXTRA_DESCRIPTION";
     public static final String EXTRA_BIOLOGY =
             "com.example.ornithology_favre_berthouzoz.EXTRA_BIOLOGY";
+
+
 
 
     //firebase upload image
@@ -64,7 +67,7 @@ public class AddEditBirdActivity extends AppCompatActivity {
     private DatabaseReference mDatabaseRef;
 
 
-    private EditText editName, editFamily, editDescription, editBiology;
+    private EditText editName, editDescription, editBiology;
 
 
     @Override
@@ -99,7 +102,7 @@ public class AddEditBirdActivity extends AppCompatActivity {
 
         //id of the text in the .xml
         editName =  findViewById(R.id.edit_txt_name);
-        editFamily  =  findViewById(R.id.edit_txt_family);
+       // editFamily  =  findViewById(R.id.edit_txt_family);
         editBiology  =  findViewById(R.id.edit_txt_biology);
         editDescription  =  findViewById(R.id.edit_txt_description);
 
@@ -149,10 +152,11 @@ public class AddEditBirdActivity extends AppCompatActivity {
             // UPDATE
             setTitle("Edit a bird");
 
+
             editName.setText(intent.getStringExtra(EXTRA_NAME));
-          //  editFamily.setText(intent.getStringExtra(EXTRA_FAMILY));
             editBiology.setText(intent.getStringExtra(EXTRA_BIOLOGY));
             editDescription.setText(intent.getStringExtra(EXTRA_DESCRIPTION));
+
         }
         else{
             setTitle("Add a new bird");
@@ -192,13 +196,13 @@ public class AddEditBirdActivity extends AppCompatActivity {
         //method to save the bird
     private void saveBird(){
         String name = editName.getText().toString();
-        String family = editFamily.getText().toString();
+        //String family = editFamily.getText().toString();
         String description = editDescription.getText().toString();
         String biology = editBiology.getText().toString();
 
         //if it's not empty, save, otherwise send a toast message
-        if(name.trim().isEmpty() || family.trim().isEmpty()){
-            Toast.makeText(this,"Please enter a name and a family", Toast.LENGTH_SHORT).show();
+        if(name.trim().isEmpty()){
+            Toast.makeText(this,"Please enter a name", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -206,7 +210,6 @@ public class AddEditBirdActivity extends AppCompatActivity {
 
         Intent data = new Intent();
         data.putExtra(EXTRA_NAME, name);
-        //data.putExtra(EXTRA_FAMILY, family);
         data.putExtra(EXTRA_DESCRIPTION, description);
         data.putExtra(EXTRA_BIOLOGY, biology);
 
@@ -214,8 +217,8 @@ public class AddEditBirdActivity extends AppCompatActivity {
 
 
         //update with id
-        int id = getIntent().getIntExtra(EXTRA_IDBIRD, -1); //-1 because we will never have an entry which is -1
-        if(id != -1){
+        String id = getIntent().getStringExtra(EXTRA_IDBIRD);
+        if(id != null){
             data.putExtra(EXTRA_IDBIRD, id);
         }
 
@@ -224,6 +227,8 @@ public class AddEditBirdActivity extends AppCompatActivity {
 
 
     }
+
+    //MENU
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu){

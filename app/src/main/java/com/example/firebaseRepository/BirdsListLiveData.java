@@ -3,7 +3,6 @@ package com.example.firebaseRepository;
 import android.util.Log;
 
 import com.example.firebaseEntities.Bird_Firebase;
-import com.example.firebaseEntities.Family_Firebase;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -15,16 +14,18 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 
-public class FamilyListLiveData extends LiveData<List<Family_Firebase>> {
+public class BirdsListLiveData extends LiveData<List<Bird_Firebase>> {
 
-    private static final String TAG = "FamilyLiveData";
+    private static final String TAG = "BirdsLiveData";
 
     private final DatabaseReference reference;
     private final MyValueEventListener listener = new MyValueEventListener();
+    private final String id;
 
-    public FamilyListLiveData(DatabaseReference ref) {
+
+    public BirdsListLiveData(DatabaseReference ref, String id) {
         reference = ref;
-
+        this.id = id;
     }
 
     @Override
@@ -38,10 +39,11 @@ public class FamilyListLiveData extends LiveData<List<Family_Firebase>> {
         Log.d(TAG, "onInactive");
     }
 
+
     private class MyValueEventListener implements ValueEventListener {
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-            setValue(toFamilyList(dataSnapshot));
+            setValue(toBirdList(dataSnapshot));
         }
 
         @Override
@@ -50,14 +52,19 @@ public class FamilyListLiveData extends LiveData<List<Family_Firebase>> {
         }
     }
 
-    private List<Family_Firebase> toFamilyList(DataSnapshot snapshot) {
-        List<Family_Firebase> families = new ArrayList<>();
+    private List<Bird_Firebase> toBirdList(DataSnapshot snapshot) {
+        List<Bird_Firebase> birds = new ArrayList<>();
         for (DataSnapshot childSnapshot : snapshot.getChildren()) {
-            Family_Firebase entity = childSnapshot.getValue(Family_Firebase.class);
-            entity.setFamilyId(childSnapshot.getKey());
-            families.add(entity);
+            Bird_Firebase entity = childSnapshot.getValue(Bird_Firebase.class);
+            entity.setId(childSnapshot.getKey());
+            entity.setFamilyId(id);
+            birds.add(entity);
 
         }
-        return families;
+        return birds;
     }
+
+
+
+
 }

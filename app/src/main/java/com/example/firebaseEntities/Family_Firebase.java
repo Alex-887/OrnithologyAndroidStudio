@@ -19,9 +19,8 @@ public class Family_Firebase {
     }
 
 
-    public Family_Firebase(String familyName, String familyId) {
+    public Family_Firebase(String familyName) {
         this.familyName = familyName;
-        this.familyId = familyId;
     }
 
 

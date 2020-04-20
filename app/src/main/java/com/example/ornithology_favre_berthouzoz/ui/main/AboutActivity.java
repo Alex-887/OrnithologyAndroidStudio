@@ -1,9 +1,11 @@
-package com.example.ornithology_favre_berthouzoz;
+package com.example.ornithology_favre_berthouzoz.ui.main;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import android.os.Bundle;
+
+import com.example.ornithology_favre_berthouzoz.R;
 
 public class AboutActivity extends AppCompatActivity {
 

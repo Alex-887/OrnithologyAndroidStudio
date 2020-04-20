@@ -1,14 +1,12 @@
-package com.example.ornithology_favre_berthouzoz;
+package com.example.ornithology_favre_berthouzoz.ui.main;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.ViewModel.FamilyViewModel;
 import com.example.firebaseEntities.Family_Firebase;
-
-import java.util.List;
+import com.example.ornithology_favre_berthouzoz.R;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
@@ -18,20 +16,11 @@ import androidx.recyclerview.widget.RecyclerView;
 class FamilyAdapter extends ListAdapter<Family_Firebase, FamilyAdapter.FamilyHolder> {
 
 
-    private FamilyViewModel familyViewModel;
-
-//    private List<Bird> birdList = (List<Bird>) birdViewModel.getAllBirds();
-//    private List<Bird> birdListFull;
-
-
-
-
     //for the update
     private FamilyAdapter.OnItemClickListener listener;
 
     public FamilyAdapter() {
         super(DIFF_CALLBACK);
-
 
     }
 
@@ -47,7 +36,6 @@ class FamilyAdapter extends ListAdapter<Family_Firebase, FamilyAdapter.FamilyHol
             return  oldItem.getFamilyId().equals(newItem.getFamilyId());
         }
     };
-
 
 
     @NonNull

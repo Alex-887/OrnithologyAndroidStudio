@@ -18,7 +18,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="16dp"
-        tools:context=".AddEditBirdActivity">
+        tools:context=".ui.main.AddEditBirdActivity">
 
 
         <EditText
@@ -34,16 +34,6 @@
             />
 
 
-        <EditText
-            android:id="@+id/edit_txt_family"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="?attr/textColor"
-            android:hint="Family of the bird"
-            android:inputType="text"
-            android:textColor="?attr/textColor"
-            android:textColorHint="?attr/textColor"
-            android:textCursorDrawable="?attr/textColor" />
 
         <EditText
             android:id="@+id/edit_txt_biology"

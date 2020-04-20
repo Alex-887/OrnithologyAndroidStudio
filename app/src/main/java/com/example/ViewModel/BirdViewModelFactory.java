@@ -2,12 +2,6 @@ package com.example.ViewModel;
 
 import android.app.Application;
 
-import com.example.firebaseViewModel.BirdViewModelFirebase;
-import com.example.room.BirdRepository;
-import com.example.room.FamilyRepository;
-
-import java.util.concurrent.Executor;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;

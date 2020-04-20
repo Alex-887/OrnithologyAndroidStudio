@@ -18,35 +18,35 @@
         tools:ignore="GoogleAppIndexingWarning">
 
         <activity
-            android:name=".InfoBirdActivity"
+            android:name=".ui.main.InfoBirdActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".AddEditFamilyActivity"
+            android:name=".ui.main.AddEditFamilyActivity"
             android:label="@string/title_activity_search_name"
-            android:parentActivityName=".SearchFamilyActivity" />
+            android:parentActivityName=".ui.main.SearchFamilyActivity" />
         <activity
-            android:name=".AboutActivity"
-            android:parentActivityName=".MainActivity" />
+            android:name=".ui.main.AboutActivity"
+            android:parentActivityName=".ui.main.MainActivity" />
         <activity
-            android:name=".SearchFamilyActivity"
+            android:name=".ui.main.SearchFamilyActivity"
             android:label="@string/search_family"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".ui.main.MainActivity" />
         <activity
-            android:name=".SearchNameActivity"
+            android:name=".ui.main.SearchNameActivity"
             android:label="@string/title_activity_search_name"
             android:launchMode="singleTop"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".ui.main.SearchFamilyActivity"
             tools:targetApi="jelly_bean" />
         <activity
-            android:name=".ActivitySettings"
+            android:name=".ui.main.ActivitySettings"
             android:label="@string/settingsTitle"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".ui.main.MainActivity" />
         <activity
-            android:name=".AddEditBirdActivity"
+            android:name=".ui.main.AddEditBirdActivity"
             android:label="@string/add_bird"
-            android:parentActivityName=".SearchNameActivity" />
+            android:parentActivityName=".ui.main.SearchNameActivity" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.main.MainActivity"
              />
 
         <activity
@@ -57,7 +57,7 @@
 
 
 
-        <activity android:name=".SplashScreenActivity">
+        <activity android:name=".ui.main.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

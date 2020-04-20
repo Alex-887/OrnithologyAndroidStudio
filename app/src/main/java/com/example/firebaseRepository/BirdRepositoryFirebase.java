@@ -1,6 +1,7 @@
 package com.example.firebaseRepository;
 
 import com.example.firebaseEntities.Bird_Firebase;
+import com.example.pojo.FamiliesWithBirds;
 import com.example.util.OnAsyncEventListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -11,10 +12,8 @@ import androidx.lifecycle.LiveData;
 
 public class BirdRepositoryFirebase {
 
-
-    private LiveData<List<Bird_Firebase>> allBirds;
-    private LiveData<List<Bird_Firebase>> allBirdsFromFamily;
-
+    private List familyList;
+    private static final String TAG = "GetBirds";
 
     private static BirdRepositoryFirebase instance;
 
@@ -37,27 +36,39 @@ public class BirdRepositoryFirebase {
 
     }
 
-    public LiveData<List<Bird_Firebase>> getAllBirds(){
-        DatabaseReference reference = FirebaseDatabase.getInstance()
-                .getReference("birds");
-        return new BirdListLiveData(reference);
+
+
+
+    public LiveData<List<FamiliesWithBirds>> getAllBirds(){
+
+        DatabaseReference birdsReference =
+                FirebaseDatabase.getInstance()
+                        .getReference("birds");
+
+
+        return new FamiliesWithBirdsListLiveData(birdsReference);
     }
 
 
-    public LiveData<Bird_Firebase> getBirdsFromFamilyId(final String id){
-        DatabaseReference reference = FirebaseDatabase.getInstance()
-                .getReference("birds").
-                        child(id);
-        return new BirdLiveData(reference);
+    public LiveData<List<Bird_Firebase>> getBirdsFromFamilyId(final String id){
+
+        DatabaseReference birdsReference =
+                FirebaseDatabase.getInstance()
+                        .getReference("birds")
+                        .child(id)
+                        .child("birds");
+
+
+        return new BirdsListLiveData(birdsReference, id);
     }
 
 
     // Firebase Database paths must not contain '.', '#', '$', '[', or ']'
-    public void insertBird(final Bird_Firebase bird, final OnAsyncEventListener callback) {
-        String id = FirebaseDatabase.getInstance().getReference("birds").push().getKey();
-        FirebaseDatabase.getInstance()
-                .getReference("birds")
-                .child(id)
+    public void insertBirdIntoFamily(final Bird_Firebase bird, final OnAsyncEventListener callback, String familyId) {
+        String id = FirebaseDatabase.getInstance().getReference("birds").child(familyId).child("birds").push().getKey();
+
+
+        FirebaseDatabase.getInstance().getReference("birds").child(familyId).child("birds").child(id)
                 .setValue(bird, (databaseError, databaseReference) -> {
                     if (databaseError != null) {
                         callback.onFailure(databaseError.toException());
@@ -67,9 +78,10 @@ public class BirdRepositoryFirebase {
                 });
     }
 
-    public void updateBird(final Bird_Firebase bird, final OnAsyncEventListener callback) {
+    public void updateBird(final Bird_Firebase bird, final OnAsyncEventListener callback, final String familyId) {
+
         FirebaseDatabase.getInstance()
-                .getReference("birds")
+                .getReference("birds").child(familyId).child("birds")
                 .child(bird.getId())
                 .updateChildren(bird.toMap(), (databaseError, databaseReference) -> {
                     if (databaseError != null) {
@@ -82,9 +94,9 @@ public class BirdRepositoryFirebase {
 
 
 
-    public void deleteBird(final Bird_Firebase bird, OnAsyncEventListener callback) {
+    public void deleteBird(final Bird_Firebase bird, OnAsyncEventListener callback, final String familyId) {
         FirebaseDatabase.getInstance()
-                .getReference("birds")
+                .getReference("birds").child(familyId).child("birds")
                 .child(bird.getId())
                 .removeValue((databaseError, databaseReference) -> {
                     if (databaseError != null) {
@@ -96,9 +108,19 @@ public class BirdRepositoryFirebase {
     }
 
 
+    public void deleteAllBirds(OnAsyncEventListener callback, final String familyId) {
+        FirebaseDatabase.getInstance()
+                .getReference("birds").child(familyId).child("birds")
+                .removeValue((databaseError, databaseReference) -> {
+                    if (databaseError != null) {
+                        callback.onFailure(databaseError.toException());
+                    } else {
+                        callback.onSuccess();
+                    }
+                });
 
 
 
 
-
+    }
 }

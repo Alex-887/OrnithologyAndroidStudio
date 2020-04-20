@@ -1,14 +1,17 @@
-package com.example.ornithology_favre_berthouzoz;
+package com.example.ornithology_favre_berthouzoz.ui.main;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.ViewModel.BirdViewModel;
 import com.example.firebaseEntities.Bird_Firebase;
+import com.example.firebaseViewModel.BirdListViewModelFirebase;
+import com.example.firebaseViewModel.FamilyListViewModelFirebase;
+import com.example.ornithology_favre_berthouzoz.R;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,11 +21,6 @@ public class BirdAdapter extends ListAdapter<Bird_Firebase, BirdAdapter.BirdHold
 
 
 
-
-    private BirdViewModel birdViewModel;
-
-//    private List<Bird> birdList = (List<Bird>) birdViewModel.getAllBirds();
-//    private List<Bird> birdListFull;
 
 
     //for the update
@@ -64,12 +62,14 @@ public class BirdAdapter extends ListAdapter<Bird_Firebase, BirdAdapter.BirdHold
     public void onBindViewHolder(@NonNull BirdHolder holder, int position) {
 
 
-        //set the right name and the right family at the bird in a list
         Bird_Firebase currentBird = getItem(position);
+
+
+        //set the right name and the right family at the bird in a list
 
         holder.textViewBird.setText(currentBird.getName());
 
-       // holder.textViewFamily.setText(currentBird.getFamily()); //get family id
+        FamilyListViewModelFirebase familyListViewModelFirebase;
 
     }
 
@@ -79,6 +79,8 @@ public class BirdAdapter extends ListAdapter<Bird_Firebase, BirdAdapter.BirdHold
     public Bird_Firebase getBirdAt(int position) {
         return getItem(position);
     }
+
+
 
 
     class BirdHolder extends RecyclerView.ViewHolder {
@@ -104,47 +106,6 @@ public class BirdAdapter extends ListAdapter<Bird_Firebase, BirdAdapter.BirdHold
         }
     }
 
-
-//    //search bar
-//    @Override
-//    public Filter getFilter() {
-//
-//        return birdFilter;
-//    }
-
-//    private Filter birdFilter = new Filter(){
-//
-//        @Override
-//        protected FilterResults performFiltering(CharSequence constraint) {
-//            List<Bird> filteredList = new ArrayList<>();
-//
-//            if(constraint ==null || constraint.length()==0){
-//                filteredList.addAll(birdListFull);
-//            } else{
-//                String filterPattern = constraint.toString().toLowerCase().trim();
-//
-//                for(Bird bird : birdListFull){
-//                    if(bird.getName().toLowerCase().contains(filterPattern)){
-//                        filteredList.add(bird);
-//                    }
-//                }
-//            }
-//
-//            FilterResults results = new FilterResults();
-//            results.values = filteredList;
-//
-//            return results;
-//        }
-//
-//        @Override
-//        protected void publishResults(CharSequence constraint, FilterResults results) {
-//
-//            birdList.clear();
-//            birdList.addAll((List)results.values);
-//            notifyDataSetChanged();
-//
-//        }
-//    };
 
 
     //update

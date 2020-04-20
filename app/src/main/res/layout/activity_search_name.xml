@@ -8,7 +8,7 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical"
     android:background="?attr/bgColor"
-    tools:context=".SearchNameActivity">
+    tools:context=".ui.main.SearchNameActivity">
 
     <Button
         android:id="@+id/addBtn"
@@ -24,11 +24,6 @@
         android:textColor="?attr/textColor" />
 
 
-    <ProgressBar
-        android:id="@+id/progress_bar"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"

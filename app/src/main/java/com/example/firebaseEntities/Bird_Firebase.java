@@ -20,10 +20,8 @@ public class Bird_Firebase {
     }
 
 
-    public Bird_Firebase(String id, String name, String family, String description, String biology) {
-        this.id = id;
+    public Bird_Firebase( String name, String description, String biology) {
         this.name = name;
-        this.familyId = family;
         this.description = description;
         this.biology = biology;
     }
@@ -88,9 +86,9 @@ public class Bird_Firebase {
         @Exclude
             public Map<String, Object> toMap(){
             HashMap<String, Object> result = new HashMap<>();
-            result.put("name", name);
-            result.put("description", description);
             result.put("biology", biology);
+            result.put("description", description);
+            result.put("name", name);
             return result;
         }
 

@@ -14,11 +14,6 @@ import androidx.lifecycle.LiveData;
 public class FamilyRepositoryFirebase {
 
 
-    private LiveData<List<Bird_Firebase>> allBirds;
-    private LiveData<List<Bird_Firebase>> allBirdsFromFamily;
-
-    private String familyId;
-
     private static FamilyRepositoryFirebase instance;
 
 
@@ -44,7 +39,18 @@ public class FamilyRepositoryFirebase {
     }
 
 
+    public LiveData<Family_Firebase> getFamily(String id) {
+        DatabaseReference reference = FirebaseDatabase.getInstance()
+                .getReference("families")
+                .child(id)
+                .child("familyName");
 
+        return new FamilyLiveData(reference);
+
+    }
+
+
+    //Because we want to retrieve the name of the family inside birds, we will do all these "queries" inside families and inside birds.
 
 
 
@@ -54,8 +60,19 @@ public class FamilyRepositoryFirebase {
         String id = FirebaseDatabase.getInstance()
                 .getReference("families").push().getKey();
 
+        FirebaseDatabase.getInstance().getReference("families").child(id)
+                .setValue(family, (databaseError, databaseReference) -> {
+                    if (databaseError != null) {
+                        callback.onFailure(databaseError.toException());
+                    } else {
+                        callback.onSuccess();
+                    }
+                });
+
+
+        //cf database
         FirebaseDatabase.getInstance()
-                .getReference("families")
+                .getReference("birds")
                 .child(id)
                 .setValue(family, (databaseError, databaseReference) -> {
                     if (databaseError != null) {
@@ -64,6 +81,8 @@ public class FamilyRepositoryFirebase {
                         callback.onSuccess();
                     }
                 });
+
+
     }
 
 
@@ -79,6 +98,22 @@ public class FamilyRepositoryFirebase {
                         callback.onSuccess();
                     }
                 });
+
+        //cf database
+        FirebaseDatabase.getInstance()
+                .getReference("birds")
+                .child(family.getFamilyId())
+                .child("familyName")
+                .updateChildren(family.toMap(), (databaseError, databaseReference) -> {
+                    if (databaseError != null) {
+                        callback.onFailure(databaseError.toException());
+                    } else {
+                        callback.onSuccess();
+                    }
+                });
+
+
+
     }
 
 
@@ -94,17 +129,47 @@ public class FamilyRepositoryFirebase {
                         callback.onSuccess();
                     }
                 });
+
+        //cf database
+        FirebaseDatabase.getInstance()
+                .getReference("birds")
+                .child(family.getFamilyId())
+                .removeValue((databaseError, databaseReference) -> {
+                    if (databaseError != null) {
+                        callback.onFailure(databaseError.toException());
+                    } else {
+                        callback.onSuccess();
+                    }
+                });
     }
 
 
-    public LiveData<Family_Firebase> getFamily() {
-        DatabaseReference reference = FirebaseDatabase.getInstance()
-                .getReference("families");
 
-        return new FamilyLiveData(reference);
+    public void deleteAllFamilies(OnAsyncEventListener callback) {
+        FirebaseDatabase.getInstance()
+                .getReference("families")
+                .removeValue((databaseError, databaseReference) -> {
+                    if (databaseError != null) {
+                        callback.onFailure(databaseError.toException());
+                    } else {
+                        callback.onSuccess();
+                    }
+                });
 
-
+        //cf database
+        FirebaseDatabase.getInstance()
+                .getReference("birds")
+                .removeValue((databaseError, databaseReference) -> {
+                    if (databaseError != null) {
+                        callback.onFailure(databaseError.toException());
+                    } else {
+                        callback.onSuccess();
+                    }
+                });
     }
+
+
+
 
 
 }

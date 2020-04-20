@@ -1,4 +1,4 @@
-package com.example.ornithology_favre_berthouzoz;
+package com.example.firebaseEntities;
 
 public class Upload {
     private String mName;

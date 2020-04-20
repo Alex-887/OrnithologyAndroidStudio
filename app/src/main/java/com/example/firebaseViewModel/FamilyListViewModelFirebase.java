@@ -19,7 +19,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 public class FamilyListViewModelFirebase extends AndroidViewModel {
 
-    private static final String TAG = "AccountListViewModel";
+    private static final String TAG = "FamilyListViewModel";
 
     private final MediatorLiveData<List<Family_Firebase>> mObservableFamilies;
     private FamilyRepositoryFirebase mRepository;
@@ -41,7 +41,12 @@ public class FamilyListViewModelFirebase extends AndroidViewModel {
 
         // observe the changes of the entities from the database and forward them
         mObservableFamilies.addSource(families, mObservableFamilies::setValue);
+
+
+
     }
+
+
 
     /**
      * A creator is used to inject the account id into the ViewModel
@@ -91,6 +96,12 @@ public class FamilyListViewModelFirebase extends AndroidViewModel {
     public void deleteFamily(Family_Firebase family, OnAsyncEventListener callback) {
         ((BaseApp) getApplication()).getFamilyRepository()
                 .deleteFamily(family, callback);
+    }
+
+
+    public void deleteAllFamilies(OnAsyncEventListener callback) {
+        ((BaseApp) getApplication()).getFamilyRepository()
+                .deleteAllFamilies(callback);
     }
 
 
