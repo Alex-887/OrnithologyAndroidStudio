@@ -1,6 +1,5 @@
 # Firebase version : Ornithology_Favre_Berthouzoz
 
-Login : 
 login :     a@a.com 
 password :  123456
 
