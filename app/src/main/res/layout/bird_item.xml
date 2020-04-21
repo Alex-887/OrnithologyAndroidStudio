@@ -13,23 +13,6 @@
         android:background="@color/colorButton"
         android:padding="8dp">
 
-
-        <!--
-        if we want to add sth on the right
-        <TextView
-            android:id="@+id/text_view_priority"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:text="1"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:layout_alignParentRight="true" />
-
-            -->
-
-
-        <!--        android:textColor="?attr/textColor"-->
-
         <TextView
             android:id="@+id/text_view_bird"
             android:layout_width="wrap_content"
@@ -41,13 +24,14 @@
             android:text="Bird"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
-                <TextView
-                    android:id="@+id/text_view_family_with_bird"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/text_view_bird"
-                    android:textColor="?attr/textColor"
-                    android:text="Family" />
+        <TextView
+            android:id="@+id/text_view_family_with_bird"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_view_bird"
+            android:textColor="?attr/textColor"
+            android:text="Family" />
+
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

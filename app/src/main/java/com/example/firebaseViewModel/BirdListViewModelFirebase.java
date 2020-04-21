@@ -24,12 +24,10 @@ public class BirdListViewModelFirebase extends AndroidViewModel {
     private static final String TAG = "BirdListViewModel";
 
     private final MediatorLiveData<List<Bird_Firebase>> mObservableBirds;
-    //private final MediatorLiveData<List<Bird_Firebase>> mObservableBirdsByFamily;
     private BirdRepositoryFirebase mRepository;
     private final MediatorLiveData<List<FamiliesWithBirds>> mObservableFamiliesWithBirds;
 
 
-    // MediatorLiveData can observe other LiveData objects and react on their emissions.
 
     public BirdListViewModelFirebase(@NonNull Application application, final String id, BirdRepositoryFirebase birdRepositoryFirebase, FamilyRepositoryFirebase familyRepositoryFirebase) {
         super(application);
@@ -80,7 +78,6 @@ public class BirdListViewModelFirebase extends AndroidViewModel {
 
         @Override
         public <T extends ViewModel> T create(Class<T> modelClass) {
-            //noinspection unchecked
             return (T) new BirdListViewModelFirebase(mApplication, mId, birdRepositoryFirebase, familyRepositoryFirebase);
         }
     }

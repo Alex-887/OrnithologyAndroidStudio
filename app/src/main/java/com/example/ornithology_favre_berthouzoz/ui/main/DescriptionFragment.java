@@ -1,9 +1,7 @@
 package com.example.ornithology_favre_berthouzoz.ui.main;
 
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +11,7 @@ import com.example.ornithology_favre_berthouzoz.R;
 
 public class DescriptionFragment extends Fragment {
 
-    private TextView descriptionDisplay, biologyDisplay;
+    private TextView descriptionDisplay;
 
     public static final String ARG_DESCRIPTION ="argDescription";
     public static final String ARG_BIOLOGY= "argBiology";
@@ -53,22 +51,15 @@ public class DescriptionFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_description, container, false);
         descriptionDisplay = v.findViewById(R.id.txt_description);
-        //biologyDisplay = v.findViewById(R.id.edit_txt_biology);
 
-
+        String doubleSpace = "\n" + "\n";
         //if there is nothing, it makes the app crashes
         if (getArguments() != null) {
             description = getArguments().getString(ARG_DESCRIPTION);
             biology = getArguments().getString(ARG_BIOLOGY);
         }
 
-
-        String doubleSpace = "\n" + "\n";
-
-         descriptionDisplay.setText("Description : " +doubleSpace + description + doubleSpace + "Bio : " + "\n" + "\n" + biology);
-
-
-
+            descriptionDisplay.setText("Description : " + description + doubleSpace + "Bio : " + biology);
 
          return v;
 

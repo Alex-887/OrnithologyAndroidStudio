@@ -12,8 +12,7 @@ import androidx.lifecycle.LiveData;
 
 public class BirdRepositoryFirebase {
 
-    private List familyList;
-    private static final String TAG = "GetBirds";
+
 
     private static BirdRepositoryFirebase instance;
 

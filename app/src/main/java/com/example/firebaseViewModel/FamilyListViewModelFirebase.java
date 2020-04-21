@@ -1,14 +1,11 @@
 package com.example.firebaseViewModel;
 
 import android.app.Application;
-
 import com.example.firebaseEntities.Family_Firebase;
 import com.example.firebaseRepository.FamilyRepositoryFirebase;
 import com.example.BaseApp;
 import com.example.util.OnAsyncEventListener;
-
 import java.util.List;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
@@ -19,12 +16,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 public class FamilyListViewModelFirebase extends AndroidViewModel {
 
-    private static final String TAG = "FamilyListViewModel";
-
     private final MediatorLiveData<List<Family_Firebase>> mObservableFamilies;
     private FamilyRepositoryFirebase mRepository;
-
-    // MediatorLiveData can observe other LiveData objects and react on their emissions.
 
     public FamilyListViewModelFirebase(@NonNull Application application, FamilyRepositoryFirebase familyRepository) {
         super(application);

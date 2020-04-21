@@ -23,8 +23,6 @@ public class Family_Firebase {
         this.familyName = familyName;
     }
 
-
-
     public String getFamilyName() {
         return familyName;
     }

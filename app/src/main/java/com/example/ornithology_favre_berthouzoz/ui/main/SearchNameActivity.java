@@ -1,4 +1,5 @@
 package com.example.ornithology_favre_berthouzoz.ui.main;
+
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -6,25 +7,17 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.Spinner;
 import android.widget.Toast;
-
-import com.example.firebaseEntities.Family_Firebase;
 import com.example.firebaseEntities.Bird_Firebase;
+import com.example.firebaseEntities.Family_Firebase;
 import com.example.firebaseViewModel.BirdListViewModelFirebase;
-import com.example.firebaseViewModel.FamilyListViewModelFirebase;
 import com.example.ornithology_favre_berthouzoz.R;
 import com.example.pojo.FamiliesWithBirds;
 import com.example.util.OnAsyncEventListener;
-import com.google.firebase.auth.FirebaseAuth;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.SortedMap;
 import java.util.TreeMap;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,63 +25,21 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class SearchNameActivity extends AppCompatActivity{
+public class SearchNameActivity extends AppCompatActivity {
 
     public static final int ADD_BIRD_REQUEST = 1;
     public static final int EDIT_BIRD_REQUEST = 2;
-
-    private static final String TAG = "BirdsActivity";
-
     private List<Bird_Firebase> birds;
-   // private List<FamiliesWithBirds> familiesWithBirds;
     private BirdListViewModelFirebase birdListViewModelFirebase;
     private SortedMap<Family_Firebase, List<Bird_Firebase>> familyEntityMultimap;
 
     private String currentFamily;
 
-
-
-
     public SearchNameActivity() {
-    }
-
-    private void setupViewModels() {
-
-
-        //FACTORY TO INVOKE VIEW MODEL
-        BirdListViewModelFirebase.Factory factory = new BirdListViewModelFirebase.Factory(
-                getApplication(), "");
-
-        birdListViewModelFirebase = new ViewModelProvider(this, factory).get(BirdListViewModelFirebase.class);
-
-        birdListViewModelFirebase.getAllBirds().observe(this, familiesWithBirds -> {
-            if (familiesWithBirds != null) {
-                setupMap(familiesWithBirds);
-            }
-        });
-    }
-
-
-
-    private void setupMap(List<FamiliesWithBirds> familiesWithBirds) {
-        familyEntityMultimap = new TreeMap<>();
-        for (FamiliesWithBirds fWB : familiesWithBirds) {
-            familyEntityMultimap.put(fWB.family, fWB.birds);
-        }
-
-
-
 
     }
-
-
-
-
-
-
 
 
     @Override
@@ -96,23 +47,19 @@ public class SearchNameActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
 
 
+        Intent currentIntent = getIntent();
+        currentFamily = currentIntent.getStringExtra(AddEditFamilyActivity.EXTRA_FAMILYID);
 
-        Intent currentintent = getIntent();
-        currentFamily = currentintent.getStringExtra(AddEditFamilyActivity.EXTRA_FAMILYID);
-
-
-
-        //theme
-        if (AppCompatDelegate.getDefaultNightMode()== AppCompatDelegate.MODE_NIGHT_YES){
+        //THEME
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
             setTheme(R.style.DarkTheme);
-        }
-        else {
+        } else {
             setTheme(R.style.LightTheme);
         }
         setContentView(R.layout.activity_search_name);
 
 
-        //add button to start add edit bird activity
+        //ADD BUTTON TO ADD A BIRD
         Button addBtn = findViewById(R.id.addBtn);
         addBtn.setOnClickListener(new View.OnClickListener() {
 
@@ -124,44 +71,35 @@ public class SearchNameActivity extends AppCompatActivity{
         });
 
 
+        //RECYCLER VIEW ADAPTER
         final RecyclerView recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
 
-        //RECYCLER VIEW ADAPTER
+
         final BirdAdapter adapter = new BirdAdapter();
-        final FamiliesWithBirdAdapter familiesWithBirdAdapter = new FamiliesWithBirdAdapter();
         recyclerView.setAdapter(adapter);
 
-        if (AppCompatDelegate.getDefaultNightMode()== AppCompatDelegate.MODE_NIGHT_YES){
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
             recyclerView.setBackgroundColor(Color.parseColor("#252624"));
         }
 
-        Intent intent = getIntent();
 
-        //if there is something inside EXTRA_FAMILY, it means it comes from the activity of searching a family
-
-            //String currentFamily = intent.getStringExtra(AddEditFamilyActivity.EXTRA_FAMILYID);
-
-            //FACTORY TO INVOKE VIEW MODEL
-            BirdListViewModelFirebase.Factory factory = new BirdListViewModelFirebase.Factory(
-                    getApplication(), currentFamily);
+        //FACTORY TO INVOKE VIEW MODEL
+        BirdListViewModelFirebase.Factory factory = new BirdListViewModelFirebase.Factory(
+                getApplication(), currentFamily);
 
 
-            birdListViewModelFirebase = new ViewModelProvider(this, factory).get(BirdListViewModelFirebase.class);
-            birdListViewModelFirebase.getBirdsFromName().observe(this, bird_firebases -> {
-                if (bird_firebases != null) {
-                    birds = bird_firebases;
-                    adapter.submitList(birds);
-                }
-            });
+        birdListViewModelFirebase = new ViewModelProvider(this, factory).get(BirdListViewModelFirebase.class);
+        birdListViewModelFirebase.getBirdsFromName().observe(this, bird_firebases -> {
+            if (bird_firebases != null) {
+                birds = bird_firebases;
+                adapter.submitList(birds);
+            }
+        });
 
 
-
-
-
-
-        //to delete and update with swipe
+        //SWIPE LEFT AND RIGHT
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
                 ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) { //we can swipe to right and left to delete
 
@@ -172,12 +110,13 @@ public class SearchNameActivity extends AppCompatActivity{
                 return false;
             }
 
+
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
 
 
-          //----------------UPDATE-------------------
-                switch (direction){
+                //----------------UPDATE-------------------
+                switch (direction) {
                     case ItemTouchHelper.LEFT:
 
                         Intent intent = new Intent(SearchNameActivity.this, AddEditBirdActivity.class);
@@ -192,7 +131,7 @@ public class SearchNameActivity extends AppCompatActivity{
 
                         break;
 
-           //----------------DELETE-------------------
+                    //----------------DELETE-------------------
                     case ItemTouchHelper.RIGHT:
 
                         //we get the position of the bird at the chosen position.
@@ -216,25 +155,25 @@ public class SearchNameActivity extends AppCompatActivity{
         }).attachToRecyclerView(recyclerView); //attach to our list of birds
 
 
-        //handle the click when clicking on a bird
+        //CLICKING ON A BIRD
         adapter.setOnItemClickListener(
                 new BirdAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(Bird_Firebase bird) {
+                    @Override
+                    public void onItemClick(Bird_Firebase bird) {
 
 
-                Intent intent = new Intent(SearchNameActivity.this, InfoBirdActivity.class);
+                        Intent intent = new Intent(SearchNameActivity.this, InfoBirdActivity.class);
 
-                //send the datas to the bird info activity
-                intent.putExtra(AddEditBirdActivity.EXTRA_NAME, bird.getName());
-                intent.putExtra(AddEditBirdActivity.EXTRA_DESCRIPTION, bird.getDescription());
-                intent.putExtra(AddEditBirdActivity.EXTRA_BIOLOGY, bird.getBiology());
+                        //send the datas to the bird info activity
+                        intent.putExtra(AddEditBirdActivity.EXTRA_NAME, bird.getName());
+                        intent.putExtra(AddEditBirdActivity.EXTRA_DESCRIPTION, bird.getDescription());
+                        intent.putExtra(AddEditBirdActivity.EXTRA_BIOLOGY, bird.getBiology());
 
-                //start the menu of the chosen bird
-                startActivity(intent);
+                        //start the informations fragment of the chosen bird
+                        startActivity(intent);
 
-            }
-        });
+                    }
+                });
     }
 
 
@@ -248,7 +187,6 @@ public class SearchNameActivity extends AppCompatActivity{
             String name = data.getStringExtra(AddEditBirdActivity.EXTRA_NAME);
             String biology = data.getStringExtra(AddEditBirdActivity.EXTRA_BIOLOGY);
             String description = data.getStringExtra(AddEditBirdActivity.EXTRA_DESCRIPTION);
-
 
 
             Bird_Firebase bird = new Bird_Firebase(name, description, biology);
@@ -270,7 +208,6 @@ public class SearchNameActivity extends AppCompatActivity{
             Toast.makeText(this, "Bird saved", Toast.LENGTH_SHORT).show();
 
         } else if (requestCode == EDIT_BIRD_REQUEST && resultCode == RESULT_OK) {
-
 
 
             //----------------UPDATE-------------------
@@ -317,7 +254,6 @@ public class SearchNameActivity extends AppCompatActivity{
     }
 
 
-
     //toolbar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -353,7 +289,7 @@ public class SearchNameActivity extends AppCompatActivity{
                 }, currentFamily);
 
 
-                Toast.makeText(this,"All birds deleted", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "All birds deleted", Toast.LENGTH_SHORT).show();
                 return true;
 
 
@@ -364,6 +300,34 @@ public class SearchNameActivity extends AppCompatActivity{
 
 
 
+
+
+    //NOT USED IN THIS PROJECT : display a list of all birds with POJO
+
+
+
+    private void setupViewModels() {
+        //FACTORY TO INVOKE VIEW MODEL
+        BirdListViewModelFirebase.Factory factory = new BirdListViewModelFirebase.Factory(
+                getApplication(), "");
+
+        birdListViewModelFirebase = new ViewModelProvider(this, factory).get(BirdListViewModelFirebase.class);
+
+        birdListViewModelFirebase.getAllBirds().observe(this, familiesWithBirds -> {
+            if (familiesWithBirds != null) {
+                setupMap(familiesWithBirds);
+            }
+        });
+    }
+
+
+    //DISPLAY FULL LIST OF POJO - FAMILYWITHBIRDS
+    private void setupMap(List<FamiliesWithBirds> familiesWithBirds) {
+        familyEntityMultimap = new TreeMap<>();
+        for (FamiliesWithBirds fWB : familiesWithBirds) {
+            familyEntityMultimap.put(fWB.family, fWB.birds);
+        }
+    }
 
 
 }

@@ -2,14 +2,12 @@ package com.example.ornithology_favre_berthouzoz.ui.login;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.example.ornithology_favre_berthouzoz.ui.main.MainActivity;
 import com.example.ornithology_favre_berthouzoz.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -85,7 +83,7 @@ public class LoginActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
 
                             if(!task.isSuccessful()){
-                                Toast.makeText(LoginActivity.this,"Login unsuccessful", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginActivity.this,"Cannot login", Toast.LENGTH_SHORT).show();
 
                             }
 

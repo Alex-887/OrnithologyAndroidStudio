@@ -1,8 +1,6 @@
 package com.example.firebaseRepository;
 
 import android.util.Log;
-
-import com.example.firebaseEntities.Bird_Firebase;
 import com.example.firebaseEntities.Family_Firebase;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

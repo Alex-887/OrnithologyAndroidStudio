@@ -23,14 +23,8 @@ public class SplashScreenActivity extends AppCompatActivity {
                 .withBackgroundColor(Color.WHITE)
                 .withLogo(R.drawable.ornitop);
 
-
-
-
         View splashScreen = config.create();
         setContentView(splashScreen);
-
-
-
 
 
     }

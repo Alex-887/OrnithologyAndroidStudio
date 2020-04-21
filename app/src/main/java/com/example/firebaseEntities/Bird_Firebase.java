@@ -15,6 +15,7 @@ public class Bird_Firebase {
     private String biology;
 
 
+
     public Bird_Firebase() {
 
     }
@@ -59,17 +60,10 @@ public class Bird_Firebase {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public String getBiology() {
         return biology;
     }
 
-    public void setBiology(String biology) {
-        this.biology = biology;
-    }
 
 
 

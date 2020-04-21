@@ -2,7 +2,6 @@ package com.example.ornithology_favre_berthouzoz.ui.main;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -46,7 +45,6 @@ public class AddEditFamilyActivity extends AppCompatActivity {
 
 
 
-
         //update and add share the same actvity, the only difference with them is the title and if the editText must be already filled(update) or the edit text are empty
         if(intent.hasExtra(EXTRA_FAMILY)){
             setTitle("Edit a family");
@@ -55,11 +53,8 @@ public class AddEditFamilyActivity extends AppCompatActivity {
 
         }
 
-        //add = empty lines
         else{
-
             setTitle("Add a family");
-
         }
     }
 

@@ -2,13 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/family_list_view"
-        android:title="@string/search_name"
-        android:icon="@android:drawable/ic_menu_search"
-        app:actionViewClass="android.widget.SearchView"
-        app:showAsAction="ifRoom|collapseActionView"
-        >
-    </item>
 
     <item android:id="@+id/back_to_settings"
         android:icon="@drawable/settings_icon"
@@ -19,7 +12,5 @@
         android:icon="@drawable/settings_icon"
         android:title="@string/Delete_all"
         app:showAsAction="never"/>
-
-
 
 </menu>

@@ -10,21 +10,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
 import com.example.firebaseEntities.Family_Firebase;
 import com.example.firebaseViewModel.FamilyListViewModelFirebase;
 import com.example.ornithology_favre_berthouzoz.R;
 import com.example.util.OnAsyncEventListener;
-
 import java.util.List;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
-
 import androidx.lifecycle.ViewModelProvider;
-
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -45,10 +40,9 @@ public class SearchFamilyActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (AppCompatDelegate.getDefaultNightMode()== AppCompatDelegate.MODE_NIGHT_YES){
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
             setTheme(R.style.DarkTheme);
-        }
-        else {
+        } else {
             setTheme(R.style.LightTheme);
         }
         setContentView(R.layout.activity_search_family);
@@ -65,24 +59,18 @@ public class SearchFamilyActivity extends AppCompatActivity {
         });
 
 
-
-
-
-
         final RecyclerView recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
-
 
 
         //RECYCLER VIEW ADAPTER
         final FamilyAdapter adapter = new FamilyAdapter();
         recyclerView.setAdapter(adapter);
 
-        if (AppCompatDelegate.getDefaultNightMode()== AppCompatDelegate.MODE_NIGHT_YES){
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
             recyclerView.setBackgroundColor(Color.parseColor("#252624"));
         }
-
 
 
         //FACTORY TO INVOKE VIEW MODEL
@@ -99,10 +87,7 @@ public class SearchFamilyActivity extends AppCompatActivity {
         });
 
 
-
-
-
-       //to delete with swipe
+        //to delete with swipe
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
                 ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) { //we can swipe to right and left to delete
 
@@ -118,7 +103,7 @@ public class SearchFamilyActivity extends AppCompatActivity {
 
 
                 //update on left
-                switch (direction){
+                switch (direction) {
                     case ItemTouchHelper.LEFT:
 
                         Intent intent = new Intent(SearchFamilyActivity.this, AddEditFamilyActivity.class);
@@ -135,25 +120,18 @@ public class SearchFamilyActivity extends AppCompatActivity {
                     case ItemTouchHelper.RIGHT:
 
 
-                        Family_Firebase family = adapter.getFamilyAt(viewHolder.getAdapterPosition());
-
-
-
                         //we get the position of the family at the chosen position.
                         viewModelList.deleteFamily(adapter.getFamilyAt(viewHolder.getAdapterPosition()), new OnAsyncEventListener() {
                             @Override
                             public void onSuccess() {
                                 Log.d(TAG, "Delete family: success");
-                              //  Toast.makeText(SearchFamilyActivity.this, "Family deleted.", Toast.LENGTH_SHORT).show();
                             }
 
                             @Override
                             public void onFailure(Exception e) {
                                 Log.d(TAG, "Create family: failure", e);
-                                //Toast.makeText(SearchFamilyActivity.this, "An error occured during deletion.", Toast.LENGTH_SHORT).show();
                             }
                         });
-
 
                         break;
                 }
@@ -170,19 +148,15 @@ public class SearchFamilyActivity extends AppCompatActivity {
                     public void onItemClick(Family_Firebase family) {
 
                         Intent intent = new Intent(SearchFamilyActivity.this, SearchNameActivity.class);
-
                         intent.putExtra(AddEditFamilyActivity.EXTRA_FAMILY, family.getFamilyName());
                         intent.putExtra(AddEditFamilyActivity.EXTRA_FAMILYID, family.getFamilyId());
+
                         //start the menu of the chosen family
                         startActivity(intent);
-
                     }
                 });
 
     }
-
-
-
 
 
     @Override
@@ -190,12 +164,10 @@ public class SearchFamilyActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
 
-
         //insert a family
         if (requestCode == ADD_FAMILY_REQUEST && resultCode == RESULT_OK) {
             //get the string out of the edit text
             String family = data.getStringExtra(AddEditFamilyActivity.EXTRA_FAMILY);
-            String familyId = data.getStringExtra(AddEditFamilyActivity.EXTRA_FAMILYID);
 
             Family_Firebase familyObject = new Family_Firebase();
 
@@ -252,17 +224,12 @@ public class SearchFamilyActivity extends AppCompatActivity {
 
             Toast.makeText(this, "Family updated", Toast.LENGTH_SHORT).show();
 
-        }
-
-        else
-        {
+        } else {
 
             Toast.makeText(this, "Family not saved", Toast.LENGTH_SHORT).show();
         }
 
     }
-
-
 
 
     //toolbar
@@ -274,7 +241,6 @@ public class SearchFamilyActivity extends AppCompatActivity {
 
         return true;
     }
-
 
 
     //start settings when clicking on the settings icon and delete all functions
@@ -302,16 +268,12 @@ public class SearchFamilyActivity extends AppCompatActivity {
 
                     }
                 });
-                Toast.makeText(this,"All families deleted", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "All families deleted", Toast.LENGTH_SHORT).show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
-
-
-
-
 
 
 }

@@ -4,14 +4,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.example.firebaseEntities.Bird_Firebase;
-import com.example.firebaseViewModel.BirdListViewModelFirebase;
-import com.example.firebaseViewModel.FamilyListViewModelFirebase;
 import com.example.ornithology_favre_berthouzoz.R;
-
 import androidx.annotation.NonNull;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,15 +15,11 @@ import androidx.recyclerview.widget.RecyclerView;
 public class BirdAdapter extends ListAdapter<Bird_Firebase, BirdAdapter.BirdHolder>  {
 
 
-
-
-
-    //for the update
     private OnItemClickListener listener;
 
-    public BirdAdapter() {
+    public BirdAdapter()
+    {
         super(DIFF_CALLBACK);
-
     }
 
 
@@ -64,12 +55,10 @@ public class BirdAdapter extends ListAdapter<Bird_Firebase, BirdAdapter.BirdHold
 
         Bird_Firebase currentBird = getItem(position);
 
-
-        //set the right name and the right family at the bird in a list
-
+        //SET TITLES OF THE ITEM
         holder.textViewBird.setText(currentBird.getName());
+        holder.textViewFamily.setText(currentBird.getDescription());
 
-        FamilyListViewModelFirebase familyListViewModelFirebase;
 
     }
 
@@ -81,16 +70,16 @@ public class BirdAdapter extends ListAdapter<Bird_Firebase, BirdAdapter.BirdHold
     }
 
 
-
-
     class BirdHolder extends RecyclerView.ViewHolder {
+
         private TextView textViewBird;
         private TextView textViewFamily;
 
         public BirdHolder(@NonNull View itemView) {
             super(itemView);
-            textViewBird = itemView.findViewById(R.id.text_view_bird);
-            textViewFamily = itemView.findViewById(R.id.text_view_family);
+
+            textViewBird =   itemView.findViewById(R.id.text_view_bird);
+            textViewFamily = itemView.findViewById(R.id.text_view_family_with_bird);
 
 
             //update -> catch the click // take the listener at the right position
