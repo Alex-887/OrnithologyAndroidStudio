@@ -27,3 +27,47 @@ Toolbar :
 Hope you will enjoy our application
 Léonard F & Alex B
 
+
+JSON tree :
+
+{
+	"birds" : {
+		"{familyId1}" : {
+			"familyName" : "Alpine predators"
+			"birds" : {
+				"{birdId1}" : {
+					  "name": "Common coucou",
+					  "description": "This is a coucou",
+					  "bio": "The biology of a coucou"
+				},
+				"{birdId2}" : {
+					  "name": "Common coucou",
+					  "description": "This is a coucou",
+					  "bio": "The biology of a coucou"
+				}
+			}
+		}, 
+		"{familyId2}" : {
+			"familyName" : "Martinets"
+			"birds" : {
+				"{birdId3}" : {
+					  "name": "Common coucou",
+					  "description": "This is a coucou",
+					  "bio": "The biology of a coucou"
+				}
+			}
+		},
+		...
+	}
+	
+	"families" : {
+		"{familyId1}" : {
+			"familyName" : "Alpine predators"
+		}, 
+		"{familyId2}" : {
+			"familyName" : "Martinets"
+		},
+		...
+	}
+}
+
