@@ -1,3 +1,15 @@
+# Ornithology
+
+This project was realised during my 4th semester at the HES-SO Business IT, with my partner Léonard Favre.
+
+The goal was to create a firebase & room database with basic CRUD operation.
+
+
+
+
+
+
+
 # Firebase version : Ornithology_Favre_Berthouzoz
 
 login :     a@a.com 
@@ -22,6 +34,7 @@ On a list (wheter bird or family) :
 Toolbar :
 - Delete all on the top corner right
 - Back to settings on the top corner right
+
 
 
 Hope you will enjoy our application
